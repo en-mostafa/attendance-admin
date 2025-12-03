@@ -16,7 +16,7 @@ defaults.plugins.title.display = true;
 export default function Home() {
     const role = useContext(SessionContext);
     const { data } = useSwr('/dashboard');
-    const t =  useTranslations('Public');
+    const t = useTranslations('Public');
 
     return (
         <>
@@ -34,22 +34,22 @@ export default function Home() {
                 <div id="kt_app_content_container" className="app-container container-fluid">
                     <div className="row g-5 g-xl-10 mb-xl-10">
                         <div className="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                            <Payment data={data?.summary?.data?.factors}/>
-                            <TotalProducts data={data?.summary}/>
+                            {/*<Payment data={data?.summary?.data?.factors} />
+                            <TotalProducts data={data?.summary} />*/}
                         </div>
                         <div className="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                            <SaleIncome sales={data?.factors}/>
-                            <TotalCustomer users={data?.summary?.data?.total_users}/>
+                            {/*<SaleIncome sales={data?.factors} />
+                            <TotalCustomer users={data?.summary?.data?.total_users} />*/}
                         </div>
                         <div className="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
-                            <Visitors visitor={data?.views}/>
+                            {/*<Visitors visitor={data?.views} />*/}
                         </div>
                     </div>
                     <div className="row g-5 g-lg-10">
                         {/*<NewUsers data={data}/>*/}
                         {/*<NewPurchases />*/}
                         {role?.ticket.get_ticket && (
-                            <NewTickets data={data?.summary?.data?.tickets}/>
+                            <NewTickets data={data?.summary?.data?.tickets} />
                         )}
                     </div>
                 </div>
