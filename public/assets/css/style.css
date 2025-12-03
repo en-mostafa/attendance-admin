@@ -1,0 +1,11 @@
+@media print {
+    .no-print {
+      display: none !important;
+    }
+    .autoDev {
+      min-width: inherit !important;
+    }
+}
+.list-access:hover {
+  scrollbar-color: #97979d transparent
+}

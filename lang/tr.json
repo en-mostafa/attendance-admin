@@ -1,0 +1,9 @@
+{
+  "LocaleSwitcher": {
+    "locale": "{locale, select, fa {Persian} en {English} ar {Arabic} tr {Turkey} ru {Russia} other {Unknown}}"
+  },
+  "HomePage": {
+    "title": "سلام!",
+    "about": "برو به صفحه درباره ما"
+  }
+  }
