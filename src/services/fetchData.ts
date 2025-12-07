@@ -11,16 +11,16 @@ export async function postData(
   const token = await getToken();
   const locale = await getLocale();
 
-  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + url, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + "/api/admin" + url, {
     method: "POST",
     headers: {
       ...(isFormData
         ? { lang: locale, Authorization: `Bearer ${token?.value}` }
         : {
-            "Content-Type": "application/json",
-            lang: locale,
-            Authorization: `Bearer ${token?.value}`,
-          }),
+          "Content-Type": "application/json",
+          lang: locale,
+          Authorization: `Bearer ${token?.value}`,
+        }),
     },
     body: !isFormData ? JSON.stringify(params) : params,
   });

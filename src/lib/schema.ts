@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export const loginFormSchema = (t: any) =>  z.object({
-    emailOrCellphone: z.string().min(1, { message: t('email') }),
-    password: z.string().min(1, { message: t('password')}).trim()
+export const loginFormSchema = (t: any) => z.object({
+    phone: z.string().min(1, { message: t('email') }),
+    password: z.string().min(1, { message: t('password') }).trim()
 });
 
 export const addTourSchema = () => z.object({
@@ -35,28 +35,28 @@ export const translateTourSchema = () => z.object({
 })
 
 export const addHotelFormSchema = () => z.object({
-    name: z.string().min(1, {message: 'name'}),
-    stars: z.string().min(1, {message: 'stars'}),
-    locationCityId: z.string().min(1, {message: 'locationCityId'}),
-    locationCountryId: z.string().min(1, {message: 'locationCountryId'}),
-    address: z.string().min(1, {message: 'address'}),
+    name: z.string().min(1, { message: 'name' }),
+    stars: z.string().min(1, { message: 'stars' }),
+    locationCityId: z.string().min(1, { message: 'locationCityId' }),
+    locationCountryId: z.string().min(1, { message: 'locationCountryId' }),
+    address: z.string().min(1, { message: 'address' }),
 })
 
 export const translateHotelSchema = () => z.object({
-    name: z.string().min(1, {message: 'name'}),
-    address: z.string().min(1, {message: 'address'}),
+    name: z.string().min(1, { message: 'name' }),
+    address: z.string().min(1, { message: 'address' }),
     description: z.string().min(1, { message: 'description' }),
     lang: z.string().min(1, { message: 'description' })
 })
 
 export const translateHotelRoomSchema = () => z.object({
-    type: z.string().min(1, {message: 'type'}),
+    type: z.string().min(1, { message: 'type' }),
     lang: z.string().min(1, { message: 'description' }),
     options: z.any()
 })
 
 export const editHotelRoomSchema = () => z.object({
-    type: z.string().min(1, {message: 'type'}),
+    type: z.string().min(1, { message: 'type' }),
     numberOfGuests: z.string().min(1, { message: 'numberOfGuests' }),
     price: z.string().min(1, { message: 'price' }),
     discount: z.string(),
@@ -104,7 +104,7 @@ export const ticketSchema = () => z.object({
 });
 
 export const translateAccessSchema = () => z.object({
-    name: z.string().min(1, {message: 'name'}),
+    name: z.string().min(1, { message: 'name' }),
     lang: z.string().min(1, { message: 'lang' })
 })
 
@@ -184,9 +184,9 @@ export const addWalletSchema = () => z.object({
 
 export const addLegalSchema = () => z.object({
     companyName: z.string().min(1, { message: "نام شرکت الزامی است" }),
-    addressCompany: z.string().min(1, { message: "آدرس الزامی است"}),
-    registrationNumber: z.string().min(1, { message: "شماره ثبت الزامی است"}),
-    nationalNumber: z.string().min(1, { message: "شناسه ملی الزامی است"}) ,
-    economicCode: z.string().min(1, { message: "کد اقتصادی الزمی است"}),
-    postCode: z.string().min(1, { message:'کد پستی الزامی است' })
+    addressCompany: z.string().min(1, { message: "آدرس الزامی است" }),
+    registrationNumber: z.string().min(1, { message: "شماره ثبت الزامی است" }),
+    nationalNumber: z.string().min(1, { message: "شناسه ملی الزامی است" }),
+    economicCode: z.string().min(1, { message: "کد اقتصادی الزمی است" }),
+    postCode: z.string().min(1, { message: 'کد پستی الزامی است' })
 })

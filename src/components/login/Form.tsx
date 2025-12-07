@@ -6,22 +6,22 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Spinner from "../ui/spinner";
 import Errors from "../ui/errors";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 const initialSate = {
-    message : ''
+    message: ''
 }
 
-export default function Form () {
+export default function Form() {
     const t = useTranslations('Login')
     const [isSubmitting, setIsubmitting] = useState<boolean>(false);
     const [password, setPassword] = useState(true);
-    const [state, formAction, pending] = useActionState(loginForm, initialSate)
-    const locale = useLocale();
+    const [state, formAction, pending] = useActionState(loginForm, null)
     const { executeRecaptcha } = useGoogleReCaptcha();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(!executeRecaptcha) {
+        if (!executeRecaptcha) {
             console.log('Execute recaptcha not yet available');
             return
         };
@@ -35,21 +35,16 @@ export default function Form () {
                 Accept: "application/json, text/plain, */*",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({gReCaptchaToken})
-        }) 
-        if(response.status === 200) {
+            body: JSON.stringify({ gReCaptchaToken })
+        })
+        if (response.status === 200) {
             startTransition(() => {
                 formAction(formData)
             })
         }
         setIsubmitting(false)
-    }   
-    
-    useEffect(() => {
-        if(state?.message === 'success') {
-            window.location.href = `https://${process.env.NEXT_PUBLIC_DOMAIN_URL}/${locale}`
-        }
-    }, [state])
+    }
+
 
     return (
         <form className="form w-100" id="kt_sign_in_form" data-kt-redirect-url="index.html" onSubmit={handleSubmit}>
@@ -61,23 +56,23 @@ export default function Form () {
                 <span className="w-125px text-gray-500 fw-semibold fs-7">{t('label_inputs')}</span>
             </div>
             <div className="fv-row mb-8">
-                <input type="text" placeholder={t('Form.email')} name="emailOrCellphone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.emailOrCellphone && 'is-invalid'}`} />
-                <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.emailOrCellphone}</div>
+                <input type="text" placeholder={t('Form.email')} name="phone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.phone && 'is-invalid'}`} />
+                <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.phone}</div>
             </div>
             <div className="position-relative mb-3">
-                <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder={t('Form.password')} name="password" autoComplete="off"/>
+                <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder={t('Form.password')} name="password" autoComplete="off" />
                 <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility" onClick={() => setPassword(!password)}>
                     <i className={`ki-outline ki-eye-slash fs-2 ${!password && 'd-none'}`}></i>
                     <i className={`ki-outline ki-eye fs-2 ${password && 'd-none'}`}></i>
                 </span>
                 <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.password}</div>
             </div>
-          
+
             {/*button*/}
-            { state.message === 'error' && <Errors data={state?.error} /> }
+            {state?.message === 'error' && <Errors data={state?.error} />}
             <div className="d-grid mb-10">
                 <button type="submit" id="kt_sign_in_submit" className="btn btn-primary" disabled={isSubmitting || pending}>
-                    { (isSubmitting || pending) ? <Spinner /> : (
+                    {(isSubmitting || pending) ? <Spinner /> : (
                         <span className="indicator-label">{t('login')}</span>
                     )}
                 </button>

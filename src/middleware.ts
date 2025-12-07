@@ -11,9 +11,9 @@ export function middleware(req: NextRequest) {
     if (token && req.nextUrl.pathname === `/${locale}/login`) {
         return NextResponse.redirect(new URL(`/${locale}`, req.url))
     }
-    //if (!token && req.nextUrl.pathname.startsWith(`/${locale}`) && req.nextUrl.pathname !== `/${locale}/login`) {
-    //    return NextResponse.redirect(new URL(`/${locale || 'en'}/login`, req.url))
-    //}
+    if (!token && req.nextUrl.pathname.startsWith(`/${locale}`) && req.nextUrl.pathname !== `/${locale}/login`) {
+        return NextResponse.redirect(new URL(`/${locale || 'en'}/login`, req.url))
+    }
 
 
     const handleI18nRouting = createMiddleware({

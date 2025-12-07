@@ -4,29 +4,31 @@ import { loginFormSchema } from "@/lib/schema";
 import { postData } from "./fetchData";
 import { createToken, refreshToken } from "./token";
 import { getTranslations } from "next-intl/server";
+import { redirect } from "next/navigation";
 
-export const loginForm = async (state:any, formData:FormData) => {
+export const loginForm = async (state: any, formData: FormData) => {
     const t = await getTranslations('Login.Form.Validation');
     const schema = loginFormSchema(t);
-    
+
     const parse = schema.safeParse({
-        emailOrCellphone: formData.get('emailOrCellphone'),
+        phone: formData.get('phone'),
         password: formData.get('password')
     });
-    if(!parse.success) {
+    if (!parse.success) {
         return {
             errors: parse.error.flatten().fieldErrors
         }
     }
 
     //Fetch data
-    const res = await postData('/admin/login', parse.data);
-    const json = await res.json();
+    const res = await postData('/auth/login', parse.data);
+    const { data } = await res.json();
 
-    if(!res.ok) {
-        return { message: 'error', error: json?.message }
+    console.log(data)
+    if (!res.ok) {
+        return { message: 'error', error: data?.message }
     }
-    createToken(json.accessToken)
-    refreshToken(json.refreshToken)
-    return { message: 'success' }
+    createToken(data.access_token)
+    refreshToken(data.access_token)
+    redirect("/")
 }   
