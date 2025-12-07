@@ -6,7 +6,7 @@ import { getTranslations } from "next-intl/server"
 
 export const Table = async () => {
     const t = await getTranslations('Public');
-    const data = await getData('/attendance/shift')
+    const data = await getData('/shift/index')
 
     return (
         <table className="table align-middle table-row-dashed gs-0 gy-4">
@@ -21,10 +21,10 @@ export const Table = async () => {
             </thead>
             <tbody>
                 <>
-                {data?.map((item:any) => 
-                    <Items key={item.id} item={item} />
-                )}
-                {data?.length === 0 && <NodataItems colSpan={5}/> }
+                    {/*{data?.map((item: any) =>
+                        <Items key={item.id} item={item} />
+                    )}*/}
+                    {data?.length === 0 && <NodataItems colSpan={5} />}
                 </>
             </tbody>
         </table>

@@ -9,9 +9,9 @@ export const getIps = async () => {
 };
 
 // تعریف لیست IP جدید
-export const defineIps = async (state:any, data:any) => {
-  const res = await postData("/attendance/ip", data);
-  if(!res.ok) {
+export const defineIps = async (state: any, data: any) => {
+  const res = await postData("/ip/create", data);
+  if (!res.ok) {
     const result = await res.json()
     return { message: 'error', error: result.message }
   }
@@ -20,10 +20,10 @@ export const defineIps = async (state:any, data:any) => {
 };
 
 // حذف یک IP با استفاده از ipId
-export const deleteIp = async (state:any, formData:FormData) => {
+export const deleteIp = async (state: any, formData: FormData) => {
   const ipId = formData.get("id");
   const res = await deleteData(`/attendance/ip/${ipId}`);
-  if(!res.ok) {
+  if (!res.ok) {
     const result = await res.json()
     return { message: 'error', error: result.message }
   }

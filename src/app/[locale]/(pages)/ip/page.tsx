@@ -1,10 +1,11 @@
-import { AddWorkShift } from "@/components/admin/work_shift/Add";
-import { Table } from "@/components/admin/work_shift/Table";
+import { AddIp } from "@/components/setting/AddIp";
+import { Table } from "@/components/setting/TableIps";
+import { getData } from "@/services/fetchData";
 import { getTranslations } from "next-intl/server";
-import Link from "next/link";
 
-export default async function workShift() {
-    const t = await getTranslations('Public.Shift');
+export default async function Page() {
+    const { data } = await getData('/ip/index');
+    const t = await getTranslations('Public');
 
     return (
         <div className="d-flex flex-column flex-column-fluid">
@@ -13,18 +14,16 @@ export default async function workShift() {
                     <div className="card mb-5 mb-xl-8">
                         <div className="card-header border-0 pt-5">
                             <h3 className="card-title align-items-start flex-column">
-                                <span className="card-label fw-bold fs-3 mb-1">{t("shift")}</span>
+                                <span className="card-label fw-bold fs-3 mb-1">{t('Admin.permissions')}</span>
                             </h3>
                             <div className="card-toolbar gap-4">
-                                <Link href="/fa/admin/work_shift/add" className="btn btn-flex btn-primary btn-sm">
-                                    ایجاد
-                                </Link>
+                                <AddIp />
                             </div>
                         </div>
                         {/*Tabel*/}
                         <div className="card-body py-3">
                             <div className="table-responsive">
-                                <Table />
+                                <Table data={data} />
                             </div>
                         </div>
                     </div>

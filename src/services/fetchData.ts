@@ -68,7 +68,7 @@ export async function getData(url: string) {
   const token = await getToken();
   const locale = await getLocale();
 
-  const res = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + url, {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + "/api/admin" + url, {
     method: "GET",
     headers: { Authorization: `Bearer ${token?.value}`, lang: locale },
   });
