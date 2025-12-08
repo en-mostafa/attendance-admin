@@ -1,23 +1,17 @@
 'use client'
 import { Link } from "@/i18n/routing";
-import { useContext } from "react";
-import { SessionContext } from "@/store";
 import { DeletedItem } from "./Delete";
 
-export const Operation = ({ item } : { item:any }) => {
-    const role = useContext(SessionContext);
-
+export const Operation = ({ item }: { item: any }) => {
     return (
-        role?.attendance.update_shift && (
-            <td>
-                <div className="d-flex justify-content-end">
-                    <DeletedItem id={item?.id} />
-                    <Link href={`/admin/work_shift/${item?.id}`} className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1">
-                        <i className="ki-outline ki-pencil fs-2"></i>
-                    </Link>
-                </div>
-            </td>
-        )
+        <td>
+            <div className="d-flex justify-content-end">
+                <DeletedItem id={item?.id} />
+                <Link href={`/admin/work_shift/${item?.id}`} className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1">
+                    <i className="ki-outline ki-pencil fs-2"></i>
+                </Link>
+            </div>
+        </td>
 
     )
 }

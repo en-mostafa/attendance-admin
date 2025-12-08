@@ -16,7 +16,7 @@ export const Table = async () => {
                     <th className="ps-4 min-w-150px rounded-start">نام شیفت</th>
                     <th className="ps-4 min-w-150px rounded-start">تاریخ ایجاد</th>
                     <th className="ps-4 min-w-150px rounded-start">وضعیت</th>
-                    <TableOperation />
+                    <th className="min-w-50px text-end rounded-end px-4">عملیات</th>
                 </tr>
             </thead>
             <tbody>
