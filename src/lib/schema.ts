@@ -65,11 +65,15 @@ export const editHotelRoomSchema = () => z.object({
 })
 
 export const addUserSchema = () => z.object({
-    firstName: z.string().min(1, { message: 'firstName' }),
-    lastName: z.string().min(1, { message: 'lastName' }),
-    email: z.string().min(1, { message: 'email' }),
-    cellphone: z.string().min(1, { message: 'cellphone' }),
+    name: z.string().min(1, { message: 'name' }),
+    family: z.string().min(1, { message: 'family' }),
+    phone: z.string().min(1, { message: 'phone' }),
     password: z.string().min(1, { message: 'password' }),
+    nationalCode: z.string().min(1, { message: 'nationalCode' }),
+    baseSalary: z.string().min(1, { message: 'baseSalary' }),
+    emergencyPhone: z.string().min(1, { message: 'emergencyPhone' }),
+    insurance: z.string().min(1, { message: 'insurance' }),
+    address: z.string().min(1, { message: 'address' }),
 })
 
 
