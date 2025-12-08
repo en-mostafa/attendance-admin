@@ -18,14 +18,14 @@ interface Props {
     multiple?: any
 }
 
-export default function DatePickerCalnender ({ placeholder, date, setDate, format, plugins, multiple }: Props) {
+export default function DatePickerCalnender({ placeholder, date, setDate, format, plugins, multiple }: Props) {
     const [isMobile, setIsMobile] = useState(false);
     const locale = useLocale();
-    const calen = locale === 'fa' ?  persian : gregorian;
+    const calen = locale === 'fa' ? persian : gregorian;
     const local = locale === 'fa' ? persian_fa : gregorian_en;
 
     const t = useTranslations("Public");
-        
+
     useEffect(() => {
         const checkScreenSize = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -36,7 +36,7 @@ export default function DatePickerCalnender ({ placeholder, date, setDate, forma
     }, []);
 
     return (
-        <DatePicker 
+        <DatePicker
             value={date}
             format={format}
             inputClass="form-control border-end-0 rounded-end-0"

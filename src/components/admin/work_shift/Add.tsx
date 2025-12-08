@@ -8,16 +8,19 @@ import { addWorkShift } from "@/services/adminServices";
 import { useTranslations } from "next-intl";
 import { ListIps } from "@/components/admin/work_shift/ListIps";
 import { useRouter } from "@/i18n/routing";
+import { jalali } from "@/lib/helper/jalali-date";
+import { DateObject } from "react-multi-date-picker";
+import dayweek from '@/constant/dayweek.json';
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 const defaultShift = [
+    { "dayOfWeek": 6, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
     { "dayOfWeek": 0, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
     { "dayOfWeek": 1, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
     { "dayOfWeek": 2, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
     { "dayOfWeek": 3, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
     { "dayOfWeek": 4, "isActive": true, "startTime": "08:00", "endTime": "16:00" },
-    { "dayOfWeek": 5, "isActive": false, "startTime": null, "endTime": null },
-    { "dayOfWeek": 6, "isActive": false, "startTime": null, "endTime": null }
+    { "dayOfWeek": 5, "isActive": false, "startTime": null, "endTime": null }
 ]
 
 export default function AddShift({ ips }: { ips: any }) {
@@ -28,6 +31,7 @@ export default function AddShift({ ips }: { ips: any }) {
     const [ip, setIp] = useState<any>(null);
     const [state, action, pending] = useActionState(addWorkShift, null);
     const router = useRouter();
+    const days: any = dayweek.data;
 
     useEffect(() => {
         if (state?.message === 'success') {
@@ -58,7 +62,7 @@ export default function AddShift({ ips }: { ips: any }) {
                     />
                 </td>
                 <td>
-                    {item.dayOfWeek}
+                    {days[item.dayOfWeek]}
                 </td>
                 <td>
                     <input
@@ -91,13 +95,12 @@ export default function AddShift({ ips }: { ips: any }) {
             },
             ips: {
                 connect: ip.map((p: any) => {
-                    return { id: p.id }
+                    return { id: p.value }
                 })
             },
-            holidays
+            holidays: holidays.map((h: DateObject) => jalali(h))
         }
-        console.log("formData", formData)
-        //startTransition(() => action(formData))
+        startTransition(() => action(formData))
     }
 
     return (

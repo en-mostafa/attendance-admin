@@ -1,4 +1,3 @@
-import { AddWorkShift } from "@/components/admin/work_shift/Add";
 import { Table } from "@/components/admin/work_shift/Table";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
