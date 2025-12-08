@@ -181,6 +181,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                                 placeholder="انتخاب کنید"
                                                 options={ListShifts(shifts)}
                                             />
+                                            <input type="hidden" name="shiftId" defaultValue={shift} />
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">

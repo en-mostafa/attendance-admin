@@ -17,16 +17,17 @@ export const addUser = async (state: any, formData: FormData) => {
         baseSalary: formData.get('baseSalary'),
         emergencyPhone: formData.get("emergencyPhone"),
         insurance: formData.get("insurance"),
-        address: formData.get("address")
+        address: formData.get("address"),
+        shiftId: formData.get("shiftId")
     });
     if (!parse.success) {
         return {
             errors: parse.error.flatten().fieldErrors
         }
     }
-
+    console.log(parse.data)
     //Fetch data
-    const res = await postData('/admin/account/register-client', parse.data);
+    const res = await postData('/user/create', parse.data);
     if (!res.ok) {
         const data = await res.json();
         return { message: 'error', error: data.message }
