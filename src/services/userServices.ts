@@ -1,7 +1,8 @@
 'use server'
 import { addUserSchema, } from "@/lib/schema"
-import { getData, postData } from "./fetchData";
+import { getData, postData, putData } from "./fetchData";
 import { error } from "console";
+import { revalidatePath } from "next/cache";
 
 export const addUser = async (state: any, formData: FormData) => {
     const schema = addUserSchema();
@@ -38,6 +39,29 @@ export const getUsers = async () => {
     try {
         const { data } = await getData("/user/index");
         return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getLeaves = async () => {
+    try {
+        const { data } = await getData("/user/leaves");
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateLeaves = async (state: any, formData: any) => {
+
+    console.log(formData)
+    try {
+        const res = await putData("/user/leave", formData);
+        if (res.ok) {
+            revalidatePath("/users/leave");
+            return { success: true }
+        }
     } catch (error) {
         console.log(error)
     }

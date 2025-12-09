@@ -50,7 +50,7 @@ export async function putData(url: string, params: any) {
   const token = await getToken();
   const locale = await getLocale();
 
-  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + url, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + "/api/admin" + url, {
     method: "PUT",
     headers: {
       Accept: "application/json, text/plain, */*",

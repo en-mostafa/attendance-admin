@@ -46,7 +46,7 @@ export default function Sidebar() {
                                 <span className="menu-icon">
                                     <i className="ki-outline ki-profile-user fs-2"></i>
                                 </span>
-                                <span className="menu-title">{t('users')}</span>
+                                <span className="menu-title">کارمندان</span>
                                 <span className="menu-arrow"></span>
                             </span>
                             <div className="menu-sub menu-sub-accordion">
@@ -55,7 +55,7 @@ export default function Sidebar() {
                                         <span className="menu-bullet">
                                             <span className="bullet bullet-dot"></span>
                                         </span>
-                                        <span className="menu-title">{t('User.add_user')}</span>
+                                        <span className="menu-title">افزودن</span>
                                     </Link>
                                 </div>
                             </div>
@@ -65,17 +65,17 @@ export default function Sidebar() {
                                         <span className="menu-bullet">
                                             <span className="bullet bullet-dot"></span>
                                         </span>
-                                        <span className="menu-title">{t('User.users_list')}</span>
+                                        <span className="menu-title">لیست کارمندان</span>
                                     </Link>
                                 </div>
                             </div>
                             <div className="menu-sub menu-sub-accordion">
                                 <div className="menu-item">
-                                    <Link className={`menu-link ${pathname === '/users/category' && 'active'}`} href="/users/category">
+                                    <Link className={`menu-link ${pathname === '/users/leave' && 'active'}`} href="/users/leave">
                                         <span className="menu-bullet">
                                             <span className="bullet bullet-dot"></span>
                                         </span>
-                                        <span className="menu-title">{t('category')}</span>
+                                        <span className="menu-title">مرخصی ها</span>
                                     </Link>
                                 </div>
                             </div>
