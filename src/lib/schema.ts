@@ -70,11 +70,11 @@ export const addUserSchema = () => z.object({
     phone: z.string().min(1, { message: 'phone' }),
     password: z.string().min(1, { message: 'password' }),
     nationalCode: z.string().min(1, { message: 'nationalCode' }),
-    baseSalary: z.string().min(1, { message: 'baseSalary' }),
+    baseSalary: z.string().transform((val) => Number(val)),
     emergencyPhone: z.string().min(1, { message: 'emergencyPhone' }),
     insurance: z.string().min(1, { message: 'insurance' }),
     address: z.string().min(1, { message: 'address' }),
-    shiftId: z.string().min(1, { message: 'shiftId' })
+    shiftId: z.string().transform((val) => Number(val))
 })
 
 

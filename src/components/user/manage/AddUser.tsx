@@ -13,7 +13,6 @@ const Select = dynamic(() => import('react-select'), { ssr: false });
 
 export default function AddUser({ shifts }: { shifts: any }) {
     const router = useRouter();
-    const [phone, setPhone] = useState<string>();
     const [password, setPassword] = useState(true);
     const [shift, setShift] = useState<any>(null);
     const [state, action, pending] = useActionState(addUser, null);
@@ -104,20 +103,12 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                             <label htmlFor="basic-url" className="form-label">
                                                 {t("phone_number")}
                                             </label>
-                                            <PhoneInput
-                                                international
-                                                defaultCountry="IR"
-                                                value={phone}
-                                                onChange={setPhone}
-                                                className="h-40px"
-                                            />
                                             <input
                                                 type="text"
                                                 name="phone"
-                                                defaultValue={phone}
+                                                placeholder="شمار موبایل"
                                                 className={`form-control ${state?.errors?.phone && "is-invalid"
                                                     }`}
-                                                hidden
                                             />
                                             <div className="invalid-feedback">
                                                 {state?.errors?.phone}
@@ -176,12 +167,11 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                             <Select
                                                 value={shift}
                                                 onChange={setShift}
-                                                isMulti
                                                 classNamePrefix={'react-select'}
                                                 placeholder="انتخاب کنید"
                                                 options={ListShifts(shifts)}
                                             />
-                                            <input type="hidden" name="shiftId" defaultValue={shift} />
+                                            <input type="hidden" name="shiftId" defaultValue={shift?.value} />
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
