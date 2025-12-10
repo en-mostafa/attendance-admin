@@ -14,7 +14,7 @@ export function useData(url: string | null) {
             setIsloading(true);
             const fetchData = async () => {
                 const token = await getToken()
-                await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + url, { method: 'GET', headers: { Authorization: `Bearer ${token?.value}`, lang:locale } })
+                await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + "/api/admin" + url, { method: 'GET', headers: { Authorization: `Bearer ${token?.value}`, lang: locale } })
                     .then(response => response.json())
                     .then(json => {
                         if (!ignore) {

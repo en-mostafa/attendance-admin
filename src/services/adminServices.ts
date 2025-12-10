@@ -148,7 +148,7 @@ export const updateAttendance = async (state: any, formData: FormData) => {
     }
 
     //Fetch data
-    const res = await patchData(`/attendance/info/${data.id}`, data);
+    const res = await putData(`/attendance/update`, data);
     if (!res.ok) {
         const data = await res.json();
         return { message: 'error', error: data.message }

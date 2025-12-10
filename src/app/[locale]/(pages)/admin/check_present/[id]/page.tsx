@@ -1,14 +1,20 @@
+import { CalenderMonth } from "@/components/admin/check_present/present/date-picker-month";
 import Table from "@/components/admin/check_present/present/TablePresent";
 import { Link } from "@/i18n/routing";
+import { getData } from "@/services/fetchData";
 import { getTranslations } from "next-intl/server";
 
 export default async function presents({
     params,
-} : {
+    searchParams
+}: {
     params: Promise<{ id: string }>
+    searchParams: Promise<{ [date: string]: string }>
 }) {
     const { id } = await params;
-    const t = await getTranslations ('Public');
+    const param = (await searchParams).date;
+    const { data } = await getData(`/attendance/index?id=${id}&date=${param}`)
+    const t = await getTranslations('Public');
 
     return (
         <div className="d-flex flex-column flex-column-fluid">
@@ -20,6 +26,8 @@ export default async function presents({
                                 <span className="card-label fw-bold fs-3 mb-1">{t('Admin.attendance_list')}</span>
                             </h3>
                             <div className="card-toolbar">
+                                <CalenderMonth id={id} />
+
                                 <Link href="/admin/check_present" className="btn btn-sm btn-light-primary">
                                     <i className="ki-duotone ki-arrow-right fs-2 mx-1">
                                         <span className="path1"></span>
@@ -32,7 +40,7 @@ export default async function presents({
                         {/*Tabel*/}
                         <div className="card-body py-3">
                             <div className="table-responsive">
-                                <Table id={id}/>
+                                <Table data={data} />
                             </div>
                         </div>
                     </div>

@@ -11,8 +11,8 @@ export default function ProfileSidebar() {
     const { data } = useSwr('/account/permission');
     const imgUrl = data?.profile?.profileImage ? process.env.NEXT_PUBLIC_API_BACKEND_URL + "/" + data.profile.profileImage : profile
     const userName = data && data?.profile?.client;
-    const t =  useTranslations('Public');
-  
+    const t = useTranslations('Public');
+
     return (
         <div className="app-sidebar-footer d-flex align-items-center px-8 pb-10" id="kt_app_sidebar_footer">
             <div className="d-flex align-items-center" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true" data-kt-menu-placement="bottom-end">
@@ -33,7 +33,7 @@ export default function ProfileSidebar() {
                         </div>
                         <div className="d-flex flex-column">
                             <div className="fw-bold d-flex align-items-center fs-5">
-                            <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{data?.profile?.admin?.level}</span></div>
+                                <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{data?.profile?.admin?.level}</span></div>
                             <Link href="/admin/profile" className="fw-semibold text-muted text-hover-primary fs-7">{data?.profile?.email}</Link>
                         </div>
                     </div>
@@ -41,13 +41,13 @@ export default function ProfileSidebar() {
                 <div className="separator my-2"></div>
                 <div className="menu-item px-5">
                     <Link href="/admin/profile" className="menu-link px-5">
-                        {t('edit_profile')} 
+                        {t('edit_profile')}
                     </Link>
                 </div>
                 <ThemeChange />
                 <SwitchLang />
                 <div className="menu-item px-5">
-                   <Logout />
+                    <Logout />
                 </div>
             </div>
         </div>
