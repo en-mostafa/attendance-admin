@@ -1,21 +1,18 @@
 'use client'
 import Modal from "@/components/ui/Modal";
-import { useActionState, useContext, useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import Spinner from "@/components/ui/spinner";
 import { toast } from "react-toastify";
-import { SessionContext } from "@/store";
-import { useTranslations } from "next-intl";
 import { deleteIp } from "@/services/settings.server";
 
 export const DeleteIp = ({ id }: { id: number }) => {
-    const t = useTranslations('Public');
     const [showModal, setShowModal] = useState<boolean>(false);
     const [state, action, pending] = useActionState(deleteIp, null);
 
     useEffect(() => {
         if (state?.message === 'success') {
             setShowModal(false);
-            toast.success(t("toast_success"))
+            toast.success("با موفقیت انجام شد")
         }
     }, [state])
 
@@ -26,19 +23,19 @@ export const DeleteIp = ({ id }: { id: number }) => {
             </button>
 
             <Modal
-                title={t('confirm_delete')}
+                title="حذف آی پی"
                 show={showModal}
                 close={() => setShowModal(false)}>
 
                 <form action={action} className="mt-auto">
                     <input type="hidden" name="id" defaultValue={id} />
                     <div className="modal-body text-center" style={{ paddingBottom: '8rem' }}>
-                        {t('ensure_deletion')}
+                        آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟
                     </div>
 
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={() => setShowModal(false)}>{t('cancel')}</button>
-                        <button type="submit" className="btn btn-danger" disabled={pending}>{pending ? <Spinner /> : t('delete')}</button>
+                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={() => setShowModal(false)}>لغو</button>
+                        <button type="submit" className="btn btn-danger" disabled={pending}>{pending ? <Spinner /> : "حذف"}</button>
                     </div>
                     {state?.message === 'error' && <span className="text-danger">{state?.error}</span>}
                 </form>

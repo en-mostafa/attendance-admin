@@ -77,7 +77,7 @@ export default async function Page() {
                                                     </td>
                                                     <td>
                                                         <Link
-                                                            href={`/fa/admin/check_present/${client.id}?date=${todayMonth}`}
+                                                            href={`/attendance/${client.id}?date=${todayMonth}`}
                                                             className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                         >
                                                             <i className="ki-outline ki-arrow-left fs-2" />

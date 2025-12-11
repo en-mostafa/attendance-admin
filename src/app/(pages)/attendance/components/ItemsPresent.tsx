@@ -1,5 +1,4 @@
 import { StatusOption } from "./StatusOption";
-import { localOnlyDate, weekDate } from "../../work_shift/TimeZone";
 
 export default function Items({ item }: { item: any }) {
     return (
@@ -11,7 +10,7 @@ export default function Items({ item }: { item: any }) {
             </td>
             <td>
                 <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">
-                    {weekDate(item.date)}
+                    {item.date}
                 </span>
             </td>
             <td>

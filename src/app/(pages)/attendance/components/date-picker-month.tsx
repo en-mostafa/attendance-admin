@@ -19,7 +19,7 @@ export const CalenderMonth = ({ id }: { id: string }) => {
             date: val,
         }).format("YYYY-MM");
         const englishDate = value.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d).toString());
-        router.push(`/fa/admin/check_present/${id}?date=${englishDate}`)
+        router.push(`/attendance/${id}?date=${englishDate}`)
     }
 
     return (

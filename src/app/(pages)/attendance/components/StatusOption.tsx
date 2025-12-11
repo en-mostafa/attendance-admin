@@ -2,12 +2,10 @@
 import Modal from "@/components/ui/Modal";
 import Spinner from "@/components/ui/spinner";
 import { updateAttendance } from "@/services/adminServices";
-import { useTranslations } from "next-intl";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const StatusOption = ({ id, status }: { id: string, status: string }) => {
-    const t = useTranslations('Public');
     const [check, setCheck] = useState(status);
     const [showModal, setShowModal] = useState(false);
     const [state, action, pending] = useActionState(updateAttendance, null);
@@ -20,7 +18,7 @@ export const StatusOption = ({ id, status }: { id: string, status: string }) => 
     useEffect(() => {
         if (state?.message === 'success') {
             setShowModal(false)
-            toast.success(t('toast_success'))
+            toast.success("با موفقیت انجام شد")
         } else if (state?.message === 'error') {
             setCheck(status)
         }
@@ -34,7 +32,7 @@ export const StatusOption = ({ id, status }: { id: string, status: string }) => 
     return (
         <>
             <Modal
-                title={t("change_status")}
+                title="تغییر وضعیت"
                 customClass="mw-650px"
                 show={showModal}
                 close={handleCancel}>
@@ -42,12 +40,12 @@ export const StatusOption = ({ id, status }: { id: string, status: string }) => 
                     <div className="modal-body">
                         <input type="hidden" name="id" defaultValue={id} />
                         <input type="hidden" name="status" defaultValue={check} />
-                        <p className="fs-4 text-start">{t("Present.approval")}</p>
+                        <p className="fs-4 text-start">آیا مطمئن هستید برای تغییر وضعیت؟</p>
                     </div>
 
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={handleCancel}>{t("cancel")}</button>
-                        <button type="submit" className="btn btn-primary" disabled={pending}>{pending ? <Spinner /> : t("register")}</button>
+                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={handleCancel}>لغو</button>
+                        <button type="submit" className="btn btn-primary" disabled={pending}>{pending ? <Spinner /> : "ثبت"}</button>
                     </div>
                     {state?.message === 'error' && <span className="text-danger">{state?.error}</span>}
                 </form>
