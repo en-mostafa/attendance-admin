@@ -1,14 +1,8 @@
 'use client'
-import { Link } from "@/i18n/routing"
-import { SessionContext } from "@/store"
-import { useContext } from "react"
+import Link from "next/link";
 
 export const AdminChat = () => {
-    const role = useContext(SessionContext);
-    
-    if(!role?.message.get_message) {
-        return
-    }
+
 
     return (
         <Link href={"/admin-chats"}>
@@ -18,7 +12,7 @@ export const AdminChat = () => {
                 data-kt-menu-attach="parent"
                 data-kt-menu-placement="bottom-end"
             >
-            <i className="ki-outline ki-messages fs-2"></i>
+                <i className="ki-outline ki-messages fs-2"></i>
             </div>
         </Link>
     )

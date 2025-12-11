@@ -2,13 +2,11 @@
 import Spinner from "@/components/ui/spinner";
 import { useActionState, useEffect, useState } from "react";
 import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
 import { addUser } from "@/services/userServices";
 import { toast } from "react-toastify";
-import { useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
 import { ListShifts } from "@/components/admin/work_shift/ListShift";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 export default function AddUser({ shifts }: { shifts: any }) {
@@ -16,12 +14,11 @@ export default function AddUser({ shifts }: { shifts: any }) {
     const [password, setPassword] = useState(true);
     const [shift, setShift] = useState<any>(null);
     const [state, action, pending] = useActionState(addUser, null);
-    const t = useTranslations("Public");
 
     useEffect(() => {
         if (state?.message === "success") {
             router.push("/users");
-            toast.success(t("toast_success"));
+            toast.success('باموفقیت انجام شد');
         }
     }, [state]);
 
@@ -36,7 +33,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                         <div className="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
                             <div className="page-title d-flex flex-column justify-content-center gap-1 me-3">
                                 <h1 className="page-heading d-flex flex-column justify-content-center text-dark fw-bold fs-3 m-0">
-                                    {t("User.add_new_customer")}
+                                    کارمند جدید
                                 </h1>
                             </div>
                         </div>
@@ -54,14 +51,14 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                     <div className="row g-9 mb-8">
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
-                                                {t("name")}
+                                                نام
                                             </label>
                                             <input
                                                 type="text"
                                                 name="name"
                                                 className={`form-control ${state?.errors?.name && "is-invalid"
                                                     }`}
-                                                placeholder={t("name")}
+                                                placeholder="نام"
                                                 aria-label="Server"
                                             />
                                             <div className="invalid-feedback">
@@ -70,13 +67,13 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
-                                                {t("last_name")}
+                                                نام خانوادگی
                                             </label>
                                             <input
                                                 type="text"
                                                 name="family"
                                                 className={`form-control ${state?.errors?.family && "is-invalid"}`}
-                                                placeholder={t("last_name")}
+                                                placeholder="  نام خانوادگی"
                                                 aria-label="Server"
                                             />
                                             <div className="invalid-feedback">
@@ -101,7 +98,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
-                                                {t("phone_number")}
+                                                شماره موبایل
                                             </label>
                                             <input
                                                 type="text"
@@ -175,14 +172,14 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
-                                                {t("User.password")}
+                                                رمز عبور
                                             </label>
                                             <div className="position-relative ">
                                                 <input
                                                     className={`form-control bg-transparent ${state?.errors?.password && "is-invalid"
                                                         }`}
                                                     type={`${password ? "password" : "text"}`}
-                                                    placeholder={t("User.password")}
+                                                    placeholder="رمز عبور"
                                                     name="password"
                                                     autoComplete="off"
                                                 />
@@ -231,7 +228,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                             className="btn btn-primary w-150px mt-10"
                                             disabled={pending}
                                         >
-                                            {pending ? <Spinner /> : t("info_add")}
+                                            {pending ? <Spinner /> : "ثبت"}
                                         </button>
                                     </div>
                                     {state?.message === "error" && (

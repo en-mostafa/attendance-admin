@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
 import { getUserNotifs } from "@/services/notif.server";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function NotifBox() {
@@ -12,7 +12,7 @@ export default function NotifBox() {
   }, []);
 
   const apiCallGetNotif = async () => setNotifs((await getUserNotifs()) || [])
-  
+
   return (
     <>
       <Link

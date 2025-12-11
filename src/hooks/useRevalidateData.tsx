@@ -1,16 +1,14 @@
 import { getToken } from "@/services/token";
-import { useLocale } from "next-intl";
 import useSWR from "swr";
 
-export default function useSwrRevalidate(url:string) {
-    const locale = useLocale();
+export default function useSwrRevalidate(url: string) {
 
-    const fetchData = async (url:any) => {
+    const fetchData = async (url: any) => {
         const token = await getToken();
         const res = await fetch(url, {
             method: 'GET',
             headers: {
-                lang: locale,
+                lang: 'fa',
                 Authorization: `Bearer ${token?.value}`
             }
         })
