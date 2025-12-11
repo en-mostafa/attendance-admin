@@ -78,7 +78,7 @@ export default async function Page() {
                                                     </td>
                                                     <td>
                                                         <Link
-                                                            href={`/users/${client.id}`}
+                                                            href={`/employe-list/${client.id}`}
                                                             className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                         >
                                                             <i className="ki-outline ki-pencil fs-2" />

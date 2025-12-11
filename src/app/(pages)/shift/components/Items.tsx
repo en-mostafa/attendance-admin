@@ -1,4 +1,4 @@
-import { jalali, jalaliTime } from "@/lib/helper/jalali-date";
+import { jalaliTime } from "@/lib/helper/jalali-date";
 import { Operation } from "./Operation";
 
 export default function Items({ item }: { item: any }) {

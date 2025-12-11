@@ -7,10 +7,10 @@ import dynamic from "next/dynamic";
 import { addWorkShift } from "@/services/adminServices";
 import { useTranslations } from "next-intl";
 import { ListIps } from "@/components/admin/work_shift/ListIps";
-import { useRouter } from "@/i18n/routing";
 import { jalali } from "@/lib/helper/jalali-date";
 import { DateObject } from "react-multi-date-picker";
 import dayweek from '@/constant/dayweek.json';
+import { useRouter } from "next/navigation";
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 const defaultShift = [
@@ -25,7 +25,6 @@ const defaultShift = [
 
 export default function AddShift({ ips }: { ips: any }) {
     const [shiftSchedules, setShiftSchedules] = useState(defaultShift)
-    const t = useTranslations('Public');
     const [holidays, setHolidays] = useState<any>([]);
     const [title, setTitle] = useState('');
     const [ip, setIp] = useState<any>(null);
@@ -36,7 +35,7 @@ export default function AddShift({ ips }: { ips: any }) {
     useEffect(() => {
         if (state?.message === 'success') {
             router.push('/admin/work_shift')
-            toast.success(t("toast_success"))
+            toast.success("با موفقیت انجام شد")
         }
     }, [state])
 

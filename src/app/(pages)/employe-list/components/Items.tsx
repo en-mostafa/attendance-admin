@@ -1,12 +1,9 @@
-import { Link } from "@/i18n/routing";
 import { Edit } from "./Edit";
 import { pipeNumber } from "@/services/pipe";
 import { useJalaliFormat } from "@/services/formatDate";
-import { getLocale, getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export default async function Items({ item }: { item: any }) {
-    const locale = await getLocale();
-    const t = await getTranslations('Public.Finance');
 
     return (
         <tr>
@@ -26,7 +23,7 @@ export default async function Items({ item }: { item: any }) {
                 <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{pipeNumber(item?.totalAmount)}</span>
             </td>
             <td>
-                <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{useJalaliFormat(item?.paiedAt, locale)}</span>
+                <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{useJalaliFormat(item?.paiedAt, 'fa')}</span>
             </td>
             {/*<td>
                     <span 
@@ -36,8 +33,8 @@ export default async function Items({ item }: { item: any }) {
                 </td>*/}
             <td>
                 <Link
-                    href={`/finance/salary/${item?.wallet?.user.id}`}
-                    className="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">{t("show")}</Link>
+                    href={`/employe-list/${item?.wallet?.user.id}`}
+                    className="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">show</Link>
             </td>
             <td className="text-end">
                 <Edit key={item.id} item={item} />

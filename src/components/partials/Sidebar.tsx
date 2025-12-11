@@ -38,7 +38,7 @@ export default function Sidebar() {
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/employe-add' && 'active'}`} href="/">
+                            <Link className={`menu-link ${pathname === '/employe-add' && 'active'}`} href="/employe-add">
                                 <span className="menu-icon">
                                     <i className="ki-outline ki-user fs-2"></i>
                                 </span>
@@ -46,23 +46,23 @@ export default function Sidebar() {
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/' && 'active'}`} href="/">
+                            <Link className={`menu-link ${pathname === '/employe-list' && 'active'}`} href="/employe-list">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-element-11 fs-2"></i>
+                                    <i className="ki-outline ki-user fs-2"></i>
                                 </span>
                                 <span className="menu-title">لیست کارمندان</span>
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/' && 'active'}`} href="/">
+                            <Link className={`menu-link ${pathname === '/leave' && 'active'}`} href="/leave">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-element-11 fs-2"></i>
+                                    <i className="ki-outline ki-time fs-2"></i>
                                 </span>
                                 <span className="menu-title">مرخصی ها</span>
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/' && 'active'}`} href="/">
+                            <Link className={`menu-link ${pathname === '/shift' && 'active'}`} href="/shift">
                                 <span className="menu-icon">
                                     <i className="ki-outline ki-element-11 fs-2"></i>
                                 </span>

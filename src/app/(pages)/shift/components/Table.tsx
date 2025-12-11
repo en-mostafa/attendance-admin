@@ -1,11 +1,8 @@
 import NodataItems from "@/components/ui/NodataItems"
 import Items from "./Items"
 import { getData } from "@/services/fetchData"
-import { TableOperation } from "./TableOperation"
-import { getTranslations } from "next-intl/server"
 
 export const Table = async () => {
-    const t = await getTranslations('Public');
     const data = await getData('/shift/index')
 
     return (

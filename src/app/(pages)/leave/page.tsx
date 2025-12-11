@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import { getLeaves } from "@/services/userServices";
-import { Updateleave } from "@/components/leave/update-leave";
+import { Updateleave } from "./components/update-leave";
 
 enum LeaveStatus {
     PENDING = "PENDING",

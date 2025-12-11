@@ -1,9 +1,7 @@
-import { getTranslations } from "next-intl/server";
 import { Table } from "@/app/(pages)/employe-list/components/Table";
 import Spinner from "@/components/ui/spinner";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-    const t = await getTranslations('Public.Finance');
     const { id } = await params;
     const data = [
         {

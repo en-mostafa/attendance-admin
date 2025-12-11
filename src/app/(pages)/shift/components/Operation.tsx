@@ -1,6 +1,6 @@
 'use client'
-import { Link } from "@/i18n/routing";
-import { DeletedItem } from "../../../app/(pages)/shift/components/Delete";
+import Link from "next/link";
+import { DeletedItem } from "./Delete";
 
 export const Operation = ({ item }: { item: any }) => {
     return (
