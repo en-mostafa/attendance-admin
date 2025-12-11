@@ -1,13 +1,13 @@
 
 import { useMemo, useState } from "react"
 
-export const ListShifts = (data: any) => {
+export const ListIps = (data: any) => {
     const [options, setOptions] = useState();
 
     useMemo(() => {
         const value = data?.map((item: any) => ({
             value: item.id,
-            label: item.name
+            label: item.ipAddress + ` (${item.name})`
         })
         )
         setOptions(value)
