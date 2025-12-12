@@ -4,6 +4,8 @@ import { getData } from "@/services/fetchData";
 import { userInfo } from "@/services/userServices";
 import { Shift } from "../components/shift";
 import { Form } from "../components/form";
+import { jalali } from "@/lib/helper/jalali-date";
+import { useJalaliFormat } from "@/services/formatDate";
 
 export default async function Page({
     params
@@ -13,8 +15,6 @@ export default async function Page({
     const { id } = await params;
     const user = await userInfo(id);
     const shifts = await getData("/shift/index");
-
-
 
     return (
         <div className="d-flex flex-column flex-column-fluid">
@@ -41,17 +41,9 @@ export default async function Page({
                                             <div className="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                                 <a href="#" className="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                                     <i className="ki-outline ki-profile-circle fs-4 me-1"></i>
-                                                    شماره پرسنلی :   {user?.id}
+                                                    توسعه دهنده
                                                 </a>
                                             </div>
-                                        </div>
-                                        <div className="d-flex my-4">
-                                            <a href="#" className="btn btn-sm btn-danger me-2" id="kt_user_follow_button">
-                                                <span className="indicator-label"> جریمه</span>
-                                            </a>
-                                            <a href="#" className="btn btn-sm btn-success me-2" id="kt_user_follow_button">
-                                                <span className="indicator-label"> پاداش</span>
-                                            </a>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-wrap flex-stack">
@@ -59,24 +51,21 @@ export default async function Page({
                                             <div className="d-flex flex-wrap">
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
-                                                        <i className="ki-outline ki-arrow-up fs-3 text-success me-2"></i>
-                                                        <span>34</span>
+                                                        <span>{user?.id}</span>
                                                     </div>
-                                                    <div className="fw-semibold fs-6 text-gray-400">بستانکاری</div>
+                                                    <div className="fw-semibold fs-6 text-gray-400">شماره پرسنلی</div>
                                                 </div>
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
-                                                        <i className="ki-outline ki-arrow-down fs-3 text-danger me-2"></i>
-                                                        <span>34</span>
+                                                        <span>{useJalaliFormat(user?.createdAt)}</span>
                                                     </div>
-                                                    <div className="fw-semibold fs-6 text-gray-400">جریمه</div>
+                                                    <div className="fw-semibold fs-6 text-gray-400">تاریخ ثبت نام</div>
                                                 </div>
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
-                                                        <i className="ki-outline ki-arrow-up fs-3 text-success me-2"></i>
-                                                        <span>34</span>
+                                                        <span className="text-success">فعال</span>
                                                     </div>
-                                                    <div className="fw-semibold fs-6 text-gray-400">پاداش</div>
+                                                    <div className="fw-semibold fs-6 text-gray-400">وضعیت</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,19 +81,6 @@ export default async function Page({
                             </div>
                         </div>
                         <Form user={user} shifts={shifts} />
-                    </div>
-                    <div className="card mb-5 mb-xl-8">
-                        <div className="card-header border-0 pt-5">
-                            <h3 className="card-title align-items-start flex-column">
-                                <span className="card-label fw-bold fs-3 mb-1">خلاصه حقوق ها</span>
-                            </h3>
-                        </div>
-                        {/*Tabel*/}
-                        <div className="card-body py-3">
-                            <div className="table-responsive">
-                                {/*<Table data={user} />*/}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -78,7 +78,7 @@ export default function Sidebar() {
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/' && 'active'}`} href="/">
+                            <Link className={`menu-link ${pathname === '/transactions' && 'active'}`} href="/transactions">
                                 <span className="menu-icon">
                                     <i className="ki-outline ki-element-11 fs-2"></i>
                                 </span>
