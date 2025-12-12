@@ -21,7 +21,7 @@ export const Table = async () => {
                     {data?.data.map((item: any) =>
                         <Items key={item.id} item={item} />
                     )}
-                    {data?.length === 0 && <NodataItems colSpan={5} />}
+                    {data?.data.length === 0 && <NodataItems colSpan={5} />}
                 </>
             </tbody>
         </table>

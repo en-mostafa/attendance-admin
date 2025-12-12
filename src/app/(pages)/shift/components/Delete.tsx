@@ -4,13 +4,16 @@ import { useActionState, useEffect, useState } from "react";
 import Spinner from "@/components/ui/spinner";
 import { toast } from "react-toastify";
 import { deletedShift } from "@/services/shift.services";
+import { useRouter } from "next/navigation";
 
 export const DeletedItem = ({ id }: { id: number }) => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [state, action, pending] = useActionState(deletedShift, null);
+    const router = useRouter();
 
     useEffect(() => {
         if (state?.success) {
+            router.refresh();
             setShowModal(false);
             toast.success("با موفقیت انجام شد")
         }

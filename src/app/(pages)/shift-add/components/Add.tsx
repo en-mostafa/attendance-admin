@@ -33,7 +33,7 @@ export default function AddShift({ ips }: { ips: any }) {
 
     useEffect(() => {
         if (state?.message === 'success') {
-            router.push('/admin/work_shift')
+            router.push('/shift')
             toast.success("با موفقیت انجام شد")
         }
     }, [state])

@@ -72,7 +72,7 @@ export async function getData(url: string) {
 export async function deleteData(url: string) {
   const token = await getToken();
 
-  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + url, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_BACKEND_URL + "/api/admin" + url, {
     method: "DELETE",
     headers: {
       Accept: "application/json, text/plain, */*",

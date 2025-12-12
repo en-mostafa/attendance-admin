@@ -3,8 +3,8 @@
 import { loginForm } from "@/services/authServices";
 import { startTransition, useActionState, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import Spinner from "../ui/spinner";
-import Errors from "../ui/errors";
+import Spinner from "../../../../components/ui/spinner";
+import Errors from "../../../../components/ui/errors";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 

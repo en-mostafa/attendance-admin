@@ -33,13 +33,13 @@ export const updateWorkShift = async (state: any, formData: any) => {
 export const deletedShift = async (state: any, formData: FormData) => {
     const id = formData.get('id');
     //Fetch data
-    const res = await deleteData(`/attendance/shift/${id}`);
+    const res = await deleteData(`/shift/${id}`);
+    console.log(res)
     if (!res.ok) {
         const data = await res.json();
         return { message: 'error', error: data.message }
     }
-    revalidatePath('/admin/work_shift')
-    return { messgae: 'success' }
+    return { success: true }
 }
 
 export const updateAttendance = async (state: any, formData: FormData) => {
