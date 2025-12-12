@@ -40,7 +40,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/employe-add' && 'active'}`} href="/employe-add">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-user fs-2"></i>
+                                    <i className="ki-outline ki-user-edit fs-2"></i>
                                 </span>
                                 <span className="menu-title">افزودن کارمند</span>
                             </Link>
@@ -48,7 +48,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/employe-list' && 'active'}`} href="/employe-list">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-user fs-2"></i>
+                                    <i className="ki-outline ki-user-tick fs-2"></i>
                                 </span>
                                 <span className="menu-title">لیست کارمندان</span>
                             </Link>
@@ -56,7 +56,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/leave' && 'active'}`} href="/leave">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-time fs-2"></i>
+                                    <i className="ki-outline ki-calendar-8 fs-2"></i>
                                 </span>
                                 <span className="menu-title">مرخصی ها</span>
                             </Link>
@@ -64,7 +64,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/shift' && 'active'}`} href="/shift">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-element-11 fs-2"></i>
+                                    <i className="ki-outline ki-timer fs-2"></i>
                                 </span>
                                 <span className="menu-title">شیفت ها</span>
                             </Link>
@@ -72,7 +72,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/attendance' && 'active'}`} href="/attendance">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-element-11 fs-2"></i>
+                                    <i className="ki-outline ki-fingerprint-scanning fs-2"></i>
                                 </span>
                                 <span className="menu-title">حضور وغیاب</span>
                             </Link>
@@ -80,7 +80,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/transactions' && 'active'}`} href="/transactions">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-element-11 fs-2"></i>
+                                    <i className="ki-outline ki-dollar fs-2"></i>
                                 </span>
                                 <span className="menu-title">واریزی ها</span>
                             </Link>
@@ -88,7 +88,7 @@ export default function Sidebar() {
                         <div className="menu-item">
                             <Link className={`menu-link ${pathname === '/ip' && 'active'}`} href="/ip">
                                 <span className="menu-icon">
-                                    <i className="ki-outline ki-monitor-mobile fs-2"></i>
+                                    <i className="ki-outline ki-wifi-square fs-2"></i>
                                 </span>
                                 <span className="menu-title">آی پی</span>
                             </Link>

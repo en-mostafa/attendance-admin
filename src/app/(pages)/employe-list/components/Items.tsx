@@ -23,7 +23,7 @@ export default async function Items({ item }: { item: any }) {
                 <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{pipeNumber(item?.totalAmount)}</span>
             </td>
             <td>
-                <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{useJalaliFormat(item?.paiedAt, 'fa')}</span>
+                <span className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">{useJalaliFormat(item?.paiedAt)}</span>
             </td>
             {/*<td>
                     <span 

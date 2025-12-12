@@ -13,7 +13,7 @@ export default async function Page() {
                     <div className="card mb-5 mb-xl-8">
                         <div className="card-header border-0 pt-5 d-flex justify-content-between align-items-center">
                             <h3 className="card-title align-items-start flex-column">
-                                <span className="card-label fw-bold fs-3 mb-1">کارمندان</span>
+                                <span className="card-label fw-bold fs-3 mb-1">واریزی ها</span>
                             </h3>
                             <div className="card-toolbar gap-4 d-flex">
                             </div>

@@ -1,4 +1,7 @@
 import NodataItems from "@/components/ui/NodataItems"
+import { jalali } from "@/lib/helper/jalali-date"
+import { useJalaliFormat } from "@/services/formatDate"
+import { pipeNumber } from "@/services/pipe"
 
 export const Table = async ({ data }: { data: any }) => {
 
@@ -10,7 +13,7 @@ export const Table = async ({ data }: { data: any }) => {
                     <th className="min-w-100px px-0">ساعت کاری</th>
                     <th className="min-w-100px">اضافه کاری</th>
                     <th className="min-w-125px">تاخیر (ساعت)</th>
-                    <th className="min-w-125px">مجموع دریافتی  (تومان)</th>
+                    <th className="min-w-125px">حقوق دریافتی  (تومان)</th>
                     <th className="min-w-125px">پرداخت شده  (تومان)</th>
                     <th className="min-w-125px"> باقی مانده  (تومان)</th>
                     <th className="min-w-100px">وضعیت</th>
@@ -18,19 +21,26 @@ export const Table = async ({ data }: { data: any }) => {
                 </tr>
             </thead>
             <tbody className="fs-6 fw-semibold text-gray-600">
-                <tr>
-                    <td className="ps-9">آذر ماه</td>
-                    <td className="ps-0">102445788</td>
-                    <td className="ps-0">102445788</td>
-                    <td className="text-success">$38.00</td>
-                    <td className="text-success">$38.00</td>
-                    <td className="text-success">$38.00</td>
-                    <td className="text-success">$38.00</td>
-                    <td className="text-success">تسویه کامل</td>
-                    <td className="text-center">
-                        <button className="btn btn-light btn-sm btn-active-light-primary">پرداخت</button>
-                    </td>
-                </tr>
+                {data.map((item: any) =>
+                    <tr key={item.id}>
+                        <td className="ps-9">{useJalaliFormat(item.createdAt)}</td>
+                        <td>{item.totalHours}</td>
+                        <td>{item.totalOvertime}</td>
+                        <td>{item.totalDelayTime}</td>
+                        <td>{pipeNumber(item.totalSalary)}</td>
+                        <td className="text-success">{pipeNumber(item.totalPaid)}</td>
+                        <td className="text-danger">{pipeNumber(item.totalRemain)}</td>
+                        <td className="text-success">
+                            <span
+                                className={`badge ${item?.status === 'SETTLED' ? 'badge-light-success' : 'badge-light-danger'}`}>
+                                {item?.status === 'SETTLED' ? "تسویه کامل" : "تسویه نشده"}
+                            </span>
+                        </td>
+                        <td className="text-center">
+                            <button className="btn btn-light btn-sm btn-active-light-primary">پرداخت</button>
+                        </td>
+                    </tr>
+                )}
             </tbody>
         </table>
     )
