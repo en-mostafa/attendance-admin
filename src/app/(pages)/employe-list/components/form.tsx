@@ -4,18 +4,23 @@ import { Shift } from "./shift"
 import { useActionState, useEffect } from "react"
 import { updateUser } from "@/services/userServices";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { pipeNumber } from "@/services/pipe";
 
 export const Form = ({ user, shifts }: { user: any, shifts: any }) => {
     const [state, action, pending] = useActionState(updateUser, null);
+    const router = useRouter();
 
     useEffect(() => {
         if (state?.success) {
-            toast.success("با موفقیت انجام شد")
+            toast.success("با موفقیت انجام شد");
+            router.refresh()
         }
     }, [state])
 
     return (
         <form action={action}>
+            <input type="hidden" name="id" defaultValue={user?.id} />
             <div className="card-body p-9">
                 <div className="row mb-7">
                     <label className="col-lg-4 fw-semibold text-muted">نام </label>
@@ -90,7 +95,7 @@ export const Form = ({ user, shifts }: { user: any, shifts: any }) => {
                             type="text"
                             name="baseSalary"
                             className="form-control"
-                            defaultValue={user?.baseSalary}
+                            defaultValue={pipeNumber(user?.baseSalary)}
                         />
                     </div>
                 </div>

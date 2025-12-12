@@ -75,17 +75,24 @@ export const userInfo = async (id: string) => {
 }
 
 export const updateUser = async (state: any, formData: FormData) => {
-    const data = {
+    const datas = {
+        id: Number(formData.get("id")),
         name: formData.get('name'),
         family: formData.get('family'),
         phone: formData.get('phone'),
         nationalCode: formData.get("nationalCode"),
-        baseSalary: formData.get('baseSalary'),
+        baseSalary: Number(formData.get('baseSalary')),
         emergencyPhone: formData.get("emergencyPhone"),
         insurance: formData.get("insurance"),
         address: formData.get("address"),
-        shiftId: formData.get("shiftId")
+        shiftId: Number(formData.get("shiftId"))
     }
-    console.log("update", data);
-    return { success: true }
+    try {
+        const res = await putData("/user/update-user", datas);
+        if (res.ok) {
+            return { success: true }
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
