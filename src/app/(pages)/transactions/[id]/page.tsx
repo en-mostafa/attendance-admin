@@ -1,9 +1,6 @@
-import { Table } from "@/app/(pages)/employe-list/components/Table";
-import Spinner from "@/components/ui/spinner";
-import { getData } from "@/services/fetchData";
-import { userInfo } from "@/services/userServices";
-import { Shift } from "../components/shift";
-import { Form } from "../components/form";
+import { pipeNumber } from "@/services/pipe";
+import { getTransactions } from "@/services/transaction.services";
+import { Table } from "../components/Table";
 
 export default async function Page({
     params
@@ -11,11 +8,9 @@ export default async function Page({
     params: Promise<{ id: string }>
 }) {
     const { id } = await params;
-    const user = await userInfo(id);
-    const shifts = await getData("/shift/index");
-
-
-
+    const data = await getTransactions(`id=${id}&date=2024`);
+    const user = data?.transactions[0].user;
+    console.log(data)
     return (
         <div className="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" className="app-content flex-column-fluid">
@@ -60,21 +55,21 @@ export default async function Page({
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
                                                         <i className="ki-outline ki-arrow-up fs-3 text-success me-2"></i>
-                                                        <span>34</span>
+                                                        <span className="fs-5">{pipeNumber(data?.wallet?.balance ?? 0)} تومان</span>
                                                     </div>
                                                     <div className="fw-semibold fs-6 text-gray-400">بستانکاری</div>
                                                 </div>
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
                                                         <i className="ki-outline ki-arrow-down fs-3 text-danger me-2"></i>
-                                                        <span>34</span>
+                                                        <span className="fs-5">{pipeNumber(data?.wallet?.credits ?? 0)} تومان</span>
                                                     </div>
                                                     <div className="fw-semibold fs-6 text-gray-400">جریمه</div>
                                                 </div>
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
                                                         <i className="ki-outline ki-arrow-up fs-3 text-success me-2"></i>
-                                                        <span>34</span>
+                                                        <span className="fs-5">{pipeNumber(data?.wallet?.penalties ?? 0)} تومان</span>
                                                     </div>
                                                     <div className="fw-semibold fs-6 text-gray-400">پاداش</div>
                                                 </div>
@@ -97,36 +92,7 @@ export default async function Page({
                         <div id="kt_referred_users_tab_content" className="tab-content">
                             <div id="kt_referrals_1" className="card-body p-0 tab-pane fade show active" role="tabpanel" aria-labelledby="kt_referrals_year_tab">
                                 <div className="table-responsive">
-                                    <table className="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
-                                        <thead className="border-gray-200 fs-6 fw-semibold bg-lighten">
-                                            <tr>
-                                                <th className="min-w-100px ps-9">تاریخ</th>
-                                                <th className="min-w-100px px-0">ساعت کاری</th>
-                                                <th className="min-w-100px">اضافه کاری</th>
-                                                <th className="min-w-125px">تاخیر (ساعت)</th>
-                                                <th className="min-w-125px">مجموع دریافتی  (تومان)</th>
-                                                <th className="min-w-125px">پرداخت شده  (تومان)</th>
-                                                <th className="min-w-125px"> باقی مانده  (تومان)</th>
-                                                <th className="min-w-100px">وضعیت</th>
-                                                <th className="min-w-125px text-center">عملیات</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="fs-6 fw-semibold text-gray-600">
-                                            <tr>
-                                                <td className="ps-9">آذر ماه</td>
-                                                <td className="ps-0">102445788</td>
-                                                <td className="ps-0">102445788</td>
-                                                <td className="text-success">$38.00</td>
-                                                <td className="text-success">$38.00</td>
-                                                <td className="text-success">$38.00</td>
-                                                <td className="text-success">$38.00</td>
-                                                <td className="text-success">تسویه کامل</td>
-                                                <td className="text-center">
-                                                    <button className="btn btn-light btn-sm btn-active-light-primary">پرداخت</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <Table data={data?.transactions} />
                                 </div>
                             </div>
                         </div>
