@@ -1,16 +1,16 @@
 'use client'
-import { deletedShift } from "@/services/adminServices"
 import Modal from "@/components/ui/Modal";
 import { useActionState, useEffect, useState } from "react";
 import Spinner from "@/components/ui/spinner";
 import { toast } from "react-toastify";
+import { deletedShift } from "@/services/shift.services";
 
 export const DeletedItem = ({ id }: { id: number }) => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [state, action, pending] = useActionState(deletedShift, null);
 
     useEffect(() => {
-        if (state?.message === 'success') {
+        if (state?.success) {
             setShowModal(false);
             toast.success("با موفقیت انجام شد")
         }
@@ -37,7 +37,7 @@ export const DeletedItem = ({ id }: { id: number }) => {
                         <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={() => setShowModal(false)}>لغو</button>
                         <button type="submit" className="btn btn-danger" disabled={pending}>{pending ? <Spinner /> : "حذف"}</button>
                     </div>
-                    {state?.message === 'error' && <span className="text-danger">{state?.error}</span>}
+                    {state?.error === 'error' && <span className="text-danger">{state?.error}</span>}
                 </form>
             </Modal>
         </>
