@@ -1,9 +1,16 @@
 import { getData } from "@/services/fetchData";
-import AddShift from "../components/Add";
+import EditShift from "../components/Edit";
 
-export default async function Page() {
-    const { data } = await getData('/ip/index');
+export default async function Page({
+    params
+}: {
+    params: Promise<{ id: string }>
+}) {
+    const { id } = await params;
+    const { data } = await getData(`/shift?id=${id}`);
+    const { data: ips } = await getData('/ip/index');
+
     return (
-        <AddShift ips={data} />
+        <EditShift data={data} ips={ips} />
     )
 }

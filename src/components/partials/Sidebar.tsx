@@ -93,22 +93,6 @@ export default function Sidebar() {
                                 <span className="menu-title">آی پی</span>
                             </Link>
                         </div>
-                        <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/ip' && 'active'}`} href="/ip">
-                                <span className="menu-icon">
-                                    <i className="ki-outline ki-monitor-mobile fs-2"></i>
-                                </span>
-                                <span className="menu-title">گزارش مالی</span>
-                            </Link>
-                        </div>
-                        <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/logs' && 'active'}`} href="/logs">
-                                <span className="menu-icon">
-                                    <i className="ki-outline ki-monitor-mobile fs-2"></i>
-                                </span>
-                                <span className="menu-title">لاگ ها</span>
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </div>

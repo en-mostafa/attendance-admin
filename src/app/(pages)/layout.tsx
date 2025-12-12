@@ -1,5 +1,7 @@
 import Header from "@/components/partials/Header"
 import Sidebar from "@/components/partials/Sidebar"
+import LoadingPage from "@/components/ui/LoadingPage"
+import { Suspense } from "react"
 
 export default function PageLayout({
     children
@@ -13,7 +15,9 @@ export default function PageLayout({
                 <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                     <Sidebar />
                     <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
-                        {children}
+                        <Suspense fallback={<LoadingPage />}>
+                            {children}
+                        </Suspense>
                     </div>
                 </div>
             </div>

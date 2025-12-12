@@ -17,12 +17,16 @@ export const addWorkShift = async (state: any, formData: any) => {
 
 export const updateWorkShift = async (state: any, formData: any) => {
     //fetch data
-    const res = await putData(`/attendance/shift/${formData.id}`, formData)
+    const id = formData.id;
+    const datas = formData;
+    delete datas.id;
+
+    const res = await putData(`/shift/update?id=${id}`, datas);
+    console.log(datas)
     if (!res.ok) {
         const data = await res.json();
         return { message: 'error', error: data.message }
     }
-    revalidatePath('/admin/work_shift')
     return { message: 'success' }
 }
 
