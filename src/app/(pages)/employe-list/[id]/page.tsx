@@ -1,30 +1,19 @@
 import { Table } from "@/app/(pages)/employe-list/components/Table";
 import Spinner from "@/components/ui/spinner";
+import { getData } from "@/services/fetchData";
+import { userInfo } from "@/services/userServices";
+import { Shift } from "../components/shift";
+import { Form } from "../components/form";
 
-export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+export default async function Page({
+    params
+}: {
+    params: Promise<{ id: string }>
+}) {
     const { id } = await params;
-    const data = [
-        {
-            id: 1,
-            wallet: {
-                user: {
-                    id: 99,
-                    email: "test@example.com",
-                    client: {
-                        firstName: "Mostafa",
-                        lastName: "Nemati",
-                    },
-                    admin: {
-                        salary: 3500,
-                    },
-                },
-                balance: 12500,
-            },
-            totalAmount: 4200,
-            paiedAt: "2025-01-10T14:20:00",
-            side: "reward",
-        }
-    ]
+    const user = await userInfo(id);
+    const shifts = await getData("/shift/index");
+
 
 
     return (
@@ -44,7 +33,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                                     <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
                                         <div className="d-flex flex-column">
                                             <div className="d-flex align-items-center mb-2">
-                                                <a href="#" className="text-gray-900 text-hover-primary fs-2 fw-bold me-1">جلالی</a>
+                                                <a href="#" className="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{user?.family}</a>
                                                 <a href="#">
                                                     <i className="ki-outline ki-verify fs-1 text-primary"></i>
                                                 </a>
@@ -52,7 +41,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                                             <div className="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                                 <a href="#" className="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                                     <i className="ki-outline ki-profile-circle fs-4 me-1"></i>
-                                                    شماره پرسنلی : ۴۳۵۴۳۵
+                                                    شماره پرسنلی :   {user?.id}
                                                 </a>
                                             </div>
                                         </div>
@@ -102,71 +91,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                                 <h3 className="fw-bold m-0">پروفایل جزییات</h3>
                             </div>
                         </div>
-                        <div className="card-body p-9">
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">نام کامل</label>
-                                <div className="col-lg-8">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="form-control"
-                                        defaultValue={'جلالی'}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">شماره بیمه</label>
-                                <div className="col-lg-8 fv-row">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="form-control"
-                                        defaultValue={'121212'}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">شماره موبایل</label>
-                                <div className="col-lg-8 d-flex align-items-center">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="form-control"
-                                        defaultValue={'09305535392'}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">   تلفن اضطراری
-                                    <span className="ms-1" data-bs-toggle="tooltip" aria-label="شماره تلفن باید فعال باشد" data-bs-original-title="شماره تلفن باید فعال باشد" data-kt-initialized="1">
-                                    </span></label>
-                                <div className="col-lg-8 d-flex align-items-center">
-                                    <span className="fw-bold fs-6 text-gray-800 me-2">044 3276 454 935</span>
-                                </div>
-                            </div>
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">کد ملی</label>
-                                <div className="col-lg-8">
-                                    <span className="fw-bold fs-6 text-gray-800 me-2">044 3276 454 935</span>
-                                </div>
-                            </div>
-                            <div className="row mb-7">
-                                <label className="col-lg-4 fw-semibold text-muted">پایه حقوق</label>
-                                <div className="col-lg-8">
-                                    <span className="fw-bold fs-6 text-gray-800 me-2">044 3276 454 935</span>
-                                </div>
-                            </div>
-                            <div className="d-flex justify-content-end">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary w-150px mt-10"
-                                    disabled={false}
-                                >
-                                    {false ? <Spinner /> : 'ذخیره تغییرات'}
-                                </button>
-                            </div>
-                        </div>
-
+                        <Form user={user} shifts={shifts} />
                     </div>
                     <div className="card mb-5 mb-xl-8">
                         <div className="card-header border-0 pt-5">
@@ -177,7 +102,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                         {/*Tabel*/}
                         <div className="card-body py-3">
                             <div className="table-responsive">
-                                <Table data={data} />
+                                {/*<Table data={user} />*/}
                             </div>
                         </div>
                     </div>

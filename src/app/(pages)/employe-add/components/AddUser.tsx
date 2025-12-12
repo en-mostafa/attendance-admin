@@ -4,9 +4,9 @@ import { useActionState, useEffect, useState } from "react";
 import "react-phone-number-input/style.css";
 import { addUser } from "@/services/userServices";
 import { toast } from "react-toastify";
-import { ListShifts } from "@/components/admin/work_shift/ListShift";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { ListShift } from "./list-shift";
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 export default function AddUser({ shifts }: { shifts: any }) {
@@ -113,7 +113,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                         </div>
                                         <div className="col-md-4 fv-row">
                                             <label htmlFor="basic-url" className="form-label">
-                                                پایه حقوق
+                                                پایه حقوق  (تومان)
                                             </label>
                                             <input
                                                 type="text"
@@ -166,7 +166,7 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                                 onChange={setShift}
                                                 classNamePrefix={'react-select'}
                                                 placeholder="انتخاب کنید"
-                                                options={ListShifts(shifts)}
+                                                options={ListShift(shifts)}
                                             />
                                             <input type="hidden" name="shiftId" defaultValue={shift?.value} />
                                         </div>

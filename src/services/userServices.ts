@@ -54,8 +54,6 @@ export const getLeaves = async () => {
 }
 
 export const updateLeaves = async (state: any, formData: any) => {
-
-    console.log(formData)
     try {
         const res = await putData("/user/leave", formData);
         if (res.ok) {
@@ -65,4 +63,29 @@ export const updateLeaves = async (state: any, formData: any) => {
     } catch (error) {
         console.log(error)
     }
-} 
+}
+
+export const userInfo = async (id: string) => {
+    try {
+        const { data } = await getData(`/user/info?id=${id}`);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateUser = async (state: any, formData: FormData) => {
+    const data = {
+        name: formData.get('name'),
+        family: formData.get('family'),
+        phone: formData.get('phone'),
+        nationalCode: formData.get("nationalCode"),
+        baseSalary: formData.get('baseSalary'),
+        emergencyPhone: formData.get("emergencyPhone"),
+        insurance: formData.get("insurance"),
+        address: formData.get("address"),
+        shiftId: formData.get("shiftId")
+    }
+    console.log("update", data);
+    return { success: true }
+}
