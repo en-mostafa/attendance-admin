@@ -1,7 +1,7 @@
 'use client'
 import Modal from "@/components/ui/Modal";
 import Spinner from "@/components/ui/spinner";
-import { updateAttendance } from "@/services/adminServices";
+import { updateAttendance } from "@/services/shift.services";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 

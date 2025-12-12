@@ -4,12 +4,12 @@ import Spinner from "@/components/ui/spinner";
 import { toast } from "react-toastify";
 import DatePickerCalnender from "@/components/ui/DatePicker";
 import dynamic from "next/dynamic";
-import { addWorkShift } from "@/services/adminServices";
 import { jalali } from "@/lib/helper/jalali-date";
 import { DateObject } from "react-multi-date-picker";
 import dayweek from '@/constant/dayweek.json';
 import { useRouter } from "next/navigation";
 import { ListIps } from "./ListIps";
+import { addWorkShift } from "@/services/shift.services";
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 const defaultShift = [
