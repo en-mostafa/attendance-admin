@@ -13,7 +13,7 @@ export default async function Page() {
                     <div className="card mb-5 mb-xl-8">
                         <div className="card-header border-0 pt-5 d-flex justify-content-between align-items-center">
                             <h3 className="card-title align-items-start flex-column">
-                                <span className="card-label fw-bold fs-3 mb-1">واریزی ها</span>
+                                <span className="card-label fw-bold fs-3 mb-1">حقوق ها</span>
                             </h3>
                             <div className="card-toolbar gap-4 d-flex">
                             </div>
@@ -78,7 +78,7 @@ export default async function Page() {
                                                     </td>
                                                     <td>
                                                         <Link
-                                                            href={`/transactions/${client.id}`}
+                                                            href={`/salary/${client.id}`}
                                                             className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                         >
                                                             <i className="ki-outline ki-pencil fs-2" />

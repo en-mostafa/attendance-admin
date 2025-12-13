@@ -1,9 +1,9 @@
 import NodataItems from "@/components/ui/NodataItems"
-import { jalali } from "@/lib/helper/jalali-date"
 import { useJalaliFormat } from "@/services/formatDate"
 import { pipeNumber } from "@/services/pipe"
+import { Payment } from "./pyment"
 
-export const Table = async ({ data }: { data: any }) => {
+export const Table = async ({ data, userId }: { data: any, userId: number }) => {
 
     return (
         <table className="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
@@ -37,7 +37,7 @@ export const Table = async ({ data }: { data: any }) => {
                             </span>
                         </td>
                         <td className="text-center">
-                            <button className="btn btn-light btn-sm btn-active-light-primary">پرداخت</button>
+                            <Payment item={item} userId={userId} />
                         </td>
                     </tr>
                 )}

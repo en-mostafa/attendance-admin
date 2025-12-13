@@ -10,7 +10,7 @@ export default async function Page({
     const { id } = await params;
     const data = await getTransactions(`id=${id}&date=2024`);
     const user = data?.transactions[0].user;
-    console.log(data)
+
     return (
         <div className="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" className="app-content flex-column-fluid">
@@ -92,7 +92,7 @@ export default async function Page({
                         <div id="kt_referred_users_tab_content" className="tab-content">
                             <div id="kt_referrals_1" className="card-body p-0 tab-pane fade show active" role="tabpanel" aria-labelledby="kt_referrals_year_tab">
                                 <div className="table-responsive">
-                                    <Table data={data?.transactions} />
+                                    <Table data={data?.transactions} userId={user?.id} />
                                 </div>
                             </div>
                         </div>
