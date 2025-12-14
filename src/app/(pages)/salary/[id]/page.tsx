@@ -1,6 +1,6 @@
 import { pipeNumber } from "@/services/pipe";
-import { getTransactions } from "@/services/transaction.services";
 import { Table } from "../components/Table";
+import { getSalary } from "@/services/salary.services";
 
 export default async function Page({
     params
@@ -8,7 +8,7 @@ export default async function Page({
     params: Promise<{ id: string }>
 }) {
     const { id } = await params;
-    const data = await getTransactions(`id=${id}&date=2024`);
+    const data = await getSalary(`id=${id}&date=2024`);
     const user = data?.transactions[0].user;
 
     return (

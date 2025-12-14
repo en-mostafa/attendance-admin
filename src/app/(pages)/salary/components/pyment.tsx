@@ -5,6 +5,7 @@ import Spinner from "@/components/ui/spinner";
 import { pipe, pipeNumber } from "@/services/pipe";
 import { paymentSalary } from '@/services/salary.services'
 import DatePickerCalnender from "@/components/ui/DatePicker";
+import { toast } from "react-toastify";
 
 export const Payment = ({
     item,
@@ -30,8 +31,15 @@ export const Payment = ({
     useEffect(() => {
         if (state?.success) {
             setShowModal(false);
+            toast.success("با موفقیت انجام شد")
         }
     }, [state])
+
+    const handleInputPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        const newValue = value.replace(/,/g, "");
+        setPrice(newValue)
+    }
 
     const handleSubmit = () => {
         const formData = new FormData();
@@ -79,7 +87,7 @@ export const Payment = ({
                                 type="text"
                                 name="amount"
                                 value={pipe(price)}
-                                onChange={e => setPrice(e.target.value)}
+                                onChange={handleInputPrice}
                                 className={`form-control`}
                                 placeholder="مبلغ مورد نظر را وارد نمایید"
                                 aria-label="Server"
