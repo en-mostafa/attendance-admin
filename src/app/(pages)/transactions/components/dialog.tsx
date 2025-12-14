@@ -15,7 +15,7 @@ export const Dialog = ({
                 className="btn btn-light btn-sm btn-active-light-primary"
                 onClick={() => setShowModal(true)}
             >
-                <i className="ki-outline ki-pencil fs-2" />
+                <i className="ki-outline ki-mouse-square fs-2"></i>
             </button>
 
             <Modal
