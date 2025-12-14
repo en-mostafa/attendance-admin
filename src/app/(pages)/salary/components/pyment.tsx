@@ -6,6 +6,7 @@ import { pipe, pipeNumber } from "@/services/pipe";
 import { paymentSalary } from '@/services/salary.services'
 import DatePickerCalnender from "@/components/ui/DatePicker";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export const Payment = ({
     item,
@@ -20,6 +21,7 @@ export const Payment = ({
     const [file, setFile] = useState<File | any>();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [state, action, pending] = useActionState(paymentSalary, null);
+    const router = useRouter();
 
     const updateImage = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
@@ -31,7 +33,13 @@ export const Payment = ({
     useEffect(() => {
         if (state?.success) {
             setShowModal(false);
-            toast.success("با موفقیت انجام شد")
+            router.refresh();
+            toast.success("با موفقیت انجام شد");
+
+            setPrice('');
+            SetDate('')
+            setDescription('');
+            setFile(null)
         }
     }, [state])
 
@@ -55,12 +63,15 @@ export const Payment = ({
 
     return (
         <>
-            <button
-                className="btn btn-light btn-sm btn-active-light-primary"
-                onClick={() => setShowModal(true)}
-            >
-                پرداخت
-            </button>
+            {item.status !== "SETTLED" ? (
+                <button
+                    className="btn btn-light btn-sm btn-active-light-primary"
+                    onClick={() => setShowModal(true)}
+                    disabled={item.status === "SETTLED"}
+                >
+                    پرداخت
+                </button>
+            ) : "---"}
 
             <Modal
                 title="پرداخت"

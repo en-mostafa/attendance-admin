@@ -37,7 +37,11 @@ export const Table = async ({ data, userId }: { data: any, userId: number }) => 
                             </span>
                         </td>
                         <td className="text-center">
-                            <Payment item={item} userId={userId} />
+                            <Payment
+                                key={item.id}
+                                item={item}
+                                userId={userId}
+                            />
                         </td>
                     </tr>
                 )}

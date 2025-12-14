@@ -14,8 +14,9 @@ export const getSalary = async (params: string) => {
 export const paymentSalary = async (state: any, formData: FormData) => {
     try {
         const res = await postData(`/salary/payment`, formData, true);
-        console.log(res)
-        return { success: true }
+        if (res.ok) {
+            return { success: true }
+        }
     } catch (error) {
         console.log(error)
     }
