@@ -8,6 +8,12 @@ export const formatFullDate = (value: string | any) => {
     const day = date.getDate().toString().padStart(2, "0");
     return year + '-' + month + '-' + day
 }
+
+export const formatYear = (value: string | any) => {
+    const date = new Date(value);
+    const year = date.getFullYear();
+    return year
+}
 export const dateJalaliFormat = (date: string) => {
     if (!date) return;
     const locale = useLocale();

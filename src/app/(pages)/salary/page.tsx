@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { getUsers } from "@/services/userServices";
 import Link from "next/link";
+import { year } from "@/lib/helper/today-jalaly";
 
 export default async function Page() {
     const data = await getUsers();
@@ -78,7 +79,7 @@ export default async function Page() {
                                                     </td>
                                                     <td>
                                                         <Link
-                                                            href={`/salary/${client.id}`}
+                                                            href={`/salary/${client.id}?data=${year}`}
                                                             className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                         >
                                                             <i className="ki-outline ki-pencil fs-2" />

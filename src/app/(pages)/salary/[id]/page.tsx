@@ -1,6 +1,7 @@
 import { pipeNumber } from "@/services/pipe";
 import { Table } from "../components/Table";
 import { getSalary } from "@/services/salary.services";
+import { CalenderYear } from "../components/date-picker-year";
 
 export default async function Page({
     params
@@ -85,8 +86,8 @@ export default async function Page({
                             <div className="card-title">
                                 <h3 className="m-0 text-gray-800">گزارش مالی</h3>
                             </div>
-                            <div className="card-toolbar m-0">
-                                <span>1404</span>
+                            <div className="card-title">
+                                <CalenderYear id={id} />
                             </div>
                         </div>
                         <div id="kt_referred_users_tab_content" className="tab-content">
