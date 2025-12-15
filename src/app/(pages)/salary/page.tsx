@@ -20,7 +20,7 @@ export default async function Page() {
                             </div>
                         </div>
                         <div className="card-body py-3 px-0">
-                            {!data ? (
+                            {!data || !data.length ? (
                                 <div className="d-flex flex-column align-items-center py-5">
                                     <Image
                                         src="/5.png"

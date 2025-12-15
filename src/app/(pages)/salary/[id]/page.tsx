@@ -4,13 +4,16 @@ import { getSalary } from "@/services/salary.services";
 import { CalenderYear } from "../components/date-picker-year";
 
 export default async function Page({
-    params
+    params,
+    searchParams
 }: {
     params: Promise<{ id: string }>
+    searchParams: Promise<{ [date: string]: string }>
 }) {
     const { id } = await params;
-    const data = await getSalary(`id=${id}&date=2024`);
-    const user = data?.transactions[0].user;
+    const param = (await searchParams).date;
+    const data = await getSalary(`id=${id}&date=${param}`);
+    const user = data?.transactions[0]?.user;
 
     return (
         <div className="d-flex flex-column flex-column-fluid">

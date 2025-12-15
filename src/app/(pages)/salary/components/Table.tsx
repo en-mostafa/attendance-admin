@@ -21,7 +21,7 @@ export const Table = async ({ data, userId }: { data: any, userId: number }) => 
                 </tr>
             </thead>
             <tbody className="fs-6 fw-semibold text-gray-600">
-                {data.map((item: any) =>
+                {data?.map((item: any) =>
                     <tr key={item.id}>
                         <td className="ps-9">{useJalaliFormat(item.createdAt)}</td>
                         <td>{item.totalHours}</td>
@@ -44,6 +44,9 @@ export const Table = async ({ data, userId }: { data: any, userId: number }) => 
                             />
                         </td>
                     </tr>
+                )}
+                {data?.length === 0 && (
+                    <NodataItems colSpan={9} />
                 )}
             </tbody>
         </table>
