@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { getTransactions } from "@/services/transaction.services";
 import { pipeNumber } from "@/services/pipe";
-import { Dialog } from "./components/dialog";
+import { Dialog } from "./components/Dialog";
 
 export default async function Page() {
     const data = await getTransactions();
