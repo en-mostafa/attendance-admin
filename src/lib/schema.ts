@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export const loginFormSchema = (t: any) => z.object({
-    phone: z.string().min(1, { message: t('email') }),
-    password: z.string().min(1, { message: t('password') }).trim()
+export const loginFormSchema = () => z.object({
+    phone: z.string().min(1, { message: "email" }),
+    password: z.string().min(1, { message: "password" }).trim()
 });
 
 export const addTourSchema = () => z.object({

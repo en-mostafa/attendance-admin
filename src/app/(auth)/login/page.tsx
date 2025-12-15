@@ -1,9 +1,6 @@
-'use client'
 import Form from "@/app/(auth)/login/components/Form";
-import { useState } from "react";
 
 export default function Login() {
-    const [show, setShow] = useState(false);
 
     return (
         <div className="bg-auth d-flex justify-content-center align-items-center p-12">

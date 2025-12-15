@@ -1,20 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
-    const [, locale, ...segments] = req.nextUrl.pathname.split('/');
     const token = req.cookies.get('userToken')?.value;
+    const { pathname } = req.nextUrl;
+    // user is logged in but tries to access login
+    if (token && pathname === "/login") {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
 
-    if (token && req.nextUrl.pathname === `/login`) {
-        return NextResponse.redirect(new URL(`/`, req.url))
+    // user is not logged in and tries to access protected routes
+    if (!token && pathname !== "/login") {
+        return NextResponse.redirect(new URL("/login", req.url));
     }
-    if (!token && req.nextUrl.pathname.startsWith(`/`) && req.nextUrl.pathname !== `/login`) {
-        return NextResponse.redirect(new URL(`/login`, req.url))
-    }
+
+    return NextResponse.next();
 }
 
 export const config = {
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
-    matcher: ['/', '/:path*']
+    matcher: [
+        /*
+          Exclude:
+          - api routes
+          - next internals
+          - static files
+        */
+        "/((?!api|_next|favicon.ico|robots.txt).*)",
+    ],
 };

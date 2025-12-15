@@ -3,12 +3,10 @@
 import { loginFormSchema } from "@/lib/schema";
 import { postData } from "./fetchData";
 import { createToken, refreshToken } from "./token";
-import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 
 export const loginForm = async (state: any, formData: FormData) => {
-    const t = await getTranslations('Login.Form.Validation');
-    const schema = loginFormSchema(t);
+    const schema = loginFormSchema();
 
     const parse = schema.safeParse({
         phone: formData.get('phone'),

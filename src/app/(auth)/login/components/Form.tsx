@@ -5,15 +5,9 @@ import { startTransition, useActionState, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Spinner from "../../../../components/ui/spinner";
 import Errors from "../../../../components/ui/errors";
-import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 
-const initialSate = {
-    message: ''
-}
 
 export default function Form() {
-    const t = useTranslations('Login')
     const [isSubmitting, setIsubmitting] = useState<boolean>(false);
     const [password, setPassword] = useState(true);
     const [state, formAction, pending] = useActionState(loginForm, null)
@@ -49,18 +43,18 @@ export default function Form() {
     return (
         <form className="form w-100" id="kt_sign_in_form" data-kt-redirect-url="index.html" onSubmit={handleSubmit}>
             <div className="text-center mb-11">
-                <h1 className="text-gray-900 fw-bolder mb-3">{t('title')}</h1>
-                <div className="text-gray-500 fw-semibold fs-6">{t('sub_title')}</div>
+                <h1 className="text-gray-900 fw-bolder mb-3">ورود</h1>
+                <div className="text-gray-500 fw-semibold fs-6">خوش آمدید</div>
             </div>
             <div className="separator separator-content my-14">
-                <span className="w-125px text-gray-500 fw-semibold fs-7">{t('label_inputs')}</span>
+                <span className="w-125px text-gray-500 fw-semibold fs-7">شماره موبایل</span>
             </div>
             <div className="fv-row mb-8">
-                <input type="text" placeholder={t('Form.email')} name="phone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.phone && 'is-invalid'}`} />
+                <input type="text" placeholder="شماره موبایل را وارد نمایید" name="phone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.phone && 'is-invalid'}`} />
                 <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.phone}</div>
             </div>
             <div className="position-relative mb-3">
-                <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder={t('Form.password')} name="password" autoComplete="off" />
+                <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder="پسورد را وارد نمایید" name="password" autoComplete="off" />
                 <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility" onClick={() => setPassword(!password)}>
                     <i className={`ki-outline ki-eye-slash fs-2 ${!password && 'd-none'}`}></i>
                     <i className={`ki-outline ki-eye fs-2 ${password && 'd-none'}`}></i>
@@ -73,7 +67,7 @@ export default function Form() {
             <div className="d-grid mb-10">
                 <button type="submit" id="kt_sign_in_submit" className="btn btn-primary" disabled={isSubmitting || pending}>
                     {(isSubmitting || pending) ? <Spinner /> : (
-                        <span className="indicator-label">{t('login')}</span>
+                        <span className="indicator-label">ورود</span>
                     )}
                 </button>
             </div>

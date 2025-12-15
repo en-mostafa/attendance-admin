@@ -24,8 +24,8 @@ export default async function RootLayout({
                     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
                     rel="stylesheet"
                 />
-                <Script src="/assets/plugins/global/plugins.bundle.js" strategy="beforeInteractive" />
-                <Script src="/assets/js/scripts.bundle.js" strategy="beforeInteractive" />
+                <Script src="/assets/plugins/global/plugins.bundle.js" strategy="afterInteractive" />
+                <Script src="/assets/js/scripts.bundle.js" strategy="afterInteractive" />
             </head>
             <body cz-shortcut-listen="false">
                 <StoreProvider>
