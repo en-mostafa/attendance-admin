@@ -26,7 +26,7 @@ export default async function Page({
                                 <div className="me-7 mb-4">
                                     <div className="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                                         <img src="/assets/media/avatars/300-1.jpg" alt="image" />
-                                        <div className="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                                        <div className={`position-absolute translate-middle bottom-0 start-100 mb-6 rounded-circle border border-4 border-body h-20px w-20px ${user.status === 'ACTIVE' ? 'bg-success' : 'bg-danger'}`}></div>
                                     </div>
                                 </div>
                                 <div className="flex-grow-1">
@@ -63,7 +63,9 @@ export default async function Page({
                                                 </div>
                                                 <div className="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                                     <div className="d-flex align-items-center">
-                                                        <span className="text-success">فعال</span>
+                                                        <span className={`${user.status === 'ACTIVE' ? 'text-success' : "text-danger"} `}>
+                                                            {user.status === 'ACTIVE' ? 'فعال' : "غیرفعال"}
+                                                        </span>
                                                     </div>
                                                     <div className="fw-semibold fs-6 text-gray-400">وضعیت</div>
                                                 </div>

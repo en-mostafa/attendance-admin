@@ -7,17 +7,25 @@ import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { ListShift } from "./list-shift";
+import { pipe } from "@/services/pipe";
 const Select = dynamic(() => import('react-select'), { ssr: false });
 
 export default function AddUser({ shifts }: { shifts: any }) {
     const router = useRouter();
+    const [salary, setSalary] = useState('');
     const [password, setPassword] = useState(true);
     const [shift, setShift] = useState<any>(null);
     const [state, action, pending] = useActionState(addUser, null);
 
+    const handleInputPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        const newValue = value.replace(/,/g, "");
+        setSalary(newValue)
+    }
+
     useEffect(() => {
         if (state?.message === "success") {
-            router.push("/users");
+            router.push("/employe-list");
             toast.success('باموفقیت انجام شد');
         }
     }, [state]);
@@ -117,12 +125,14 @@ export default function AddUser({ shifts }: { shifts: any }) {
                                             </label>
                                             <input
                                                 type="text"
-                                                name="baseSalary"
+                                                value={pipe(salary)}
+                                                onChange={handleInputPrice}
                                                 className={`form-control ${state?.errors?.baseSalary && "is-invalid"
                                                     }`}
                                                 placeholder="پایه حقوق (تومان)"
                                                 aria-label="Server"
                                             />
+                                            <input type="hidden" name="baseSalary" defaultValue={salary} />
                                             <div className="invalid-feedback">
                                                 {state?.errors?.baseSalary}
                                             </div>

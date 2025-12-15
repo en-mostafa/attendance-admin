@@ -79,7 +79,7 @@ export default async function Page() {
                                                     </td>
                                                     <td>
                                                         <Link
-                                                            href={`/salary/${client.id}?data=${year}`}
+                                                            href={`/salary/${client.id}?date=${year}`}
                                                             className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                         >
                                                             <i className="ki-outline ki-pencil fs-2" />

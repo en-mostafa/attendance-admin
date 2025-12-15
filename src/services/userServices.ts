@@ -16,7 +16,7 @@ export const addUser = async (state: any, formData: FormData) => {
         emergencyPhone: formData.get("emergencyPhone"),
         insurance: formData.get("insurance"),
         address: formData.get("address"),
-        shiftId: formData.get("shiftId")
+        shiftId: formData.get("shiftId"),
     });
 
 
@@ -85,7 +85,9 @@ export const updateUser = async (state: any, formData: FormData) => {
         emergencyPhone: formData.get("emergencyPhone"),
         insurance: formData.get("insurance"),
         address: formData.get("address"),
-        shiftId: Number(formData.get("shiftId"))
+        shiftId: Number(formData.get("shiftId")),
+        status: formData.get("status"),
+        password: formData.get('password'),
     }
     try {
         const res = await putData("/user/update-user", datas);

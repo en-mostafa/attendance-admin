@@ -69,11 +69,11 @@ export default async function Page() {
                                                     <td>
                                                         <span className={
                                                             "badge fs-7 fw-bold " +
-                                                            (client.deletedAt !== null
+                                                            (client.status === 'ACTIVE'
                                                                 ? "badge-light-success"
                                                                 : "badge-light-danger")
                                                         }>
-                                                            {client.deletedAt !== null ? 'فعال' : 'غیرفعال'}
+                                                            {client.status === 'ACTIVE' ? 'فعال' : 'غیرفعال'}
                                                         </span>
                                                     </td>
                                                     <td>

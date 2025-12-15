@@ -13,8 +13,8 @@ export default async function Page({
     const { id } = await params;
     const param = (await searchParams).date;
     const data = await getSalary(`id=${id}&date=${param}`);
-    const user = data?.transactions[0]?.user;
-
+    const user = data?.user;
+    console.log(data)
     return (
         <div className="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" className="app-content flex-column-fluid">
