@@ -3,9 +3,15 @@ import Image from "next/image";
 import { getTransactions } from "@/services/transaction.services";
 import { pipeNumber } from "@/services/pipe";
 import { Dialog } from "./components/Dialog";
+import { CalenderMonth } from "./components/date-picker-month";
 
-export default async function Page() {
-    const data = await getTransactions();
+export default async function Page({
+    searchParams
+}: {
+    searchParams: Promise<{ [date: string]: string }>
+}) {
+    const param = (await searchParams).date;
+    const data = await getTransactions(param)
 
     return (
         <div className="d-flex flex-column flex-column-fluid">
@@ -17,6 +23,7 @@ export default async function Page() {
                                 <span className="card-label fw-bold fs-3 mb-1">واریزی ها</span>
                             </h3>
                             <div className="card-toolbar gap-4 d-flex">
+                                <CalenderMonth />
                             </div>
                         </div>
                         <div className="card-body py-3 px-0">

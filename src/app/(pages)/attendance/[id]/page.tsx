@@ -25,14 +25,6 @@ export default async function presents({
                             </h3>
                             <div className="card-toolbar">
                                 <CalenderMonth id={id} />
-
-                                <Link href="/admin/check_present" className="btn btn-sm btn-light-primary">
-                                    <i className="ki-duotone ki-arrow-right fs-2 mx-1">
-                                        <span className="path1"></span>
-                                        <span className="path2"></span>
-                                    </i>
-                                    بازگشت
-                                </Link>
                             </div>
                         </div>
                         {/*Tabel*/}

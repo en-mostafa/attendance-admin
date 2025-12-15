@@ -4,6 +4,7 @@ import logo from '../../../public/logo.png';
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { todayMonth } from "@/lib/helper/today-jalaly";
 
 export default function Sidebar() {
     const pathname = usePathname();
@@ -86,7 +87,7 @@ export default function Sidebar() {
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link className={`menu-link ${pathname === '/transactions' && 'active'}`} href="/transactions">
+                            <Link className={`menu-link ${pathname === '/transactions' && 'active'}`} href={`/transactions?date=${todayMonth}`}>
                                 <span className="menu-icon">
                                     <i className="ki-outline ki-dollar fs-2"></i>
                                 </span>
