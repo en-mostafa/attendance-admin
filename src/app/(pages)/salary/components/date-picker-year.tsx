@@ -25,8 +25,8 @@ export const CalenderYear = ({ id }: { id: string }) => {
         <DatePicker
             value={value}
             onChange={(_val) => handleChange(_val)}
-            calendar={persian}
-            locale={persian_fa}
+            //calendar={persian}
+            //locale={persian_fa}
             inputClass='w-75'
             onlyYearPicker
         />
