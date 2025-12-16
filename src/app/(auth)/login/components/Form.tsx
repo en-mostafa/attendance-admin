@@ -1,7 +1,7 @@
 'use client'
 
 import { loginForm } from "@/services/authServices";
-import { startTransition, useActionState, useEffect, useState } from "react";
+import { startTransition, useActionState, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Spinner from "../../../../components/ui/spinner";
 import Errors from "../../../../components/ui/errors";
@@ -41,36 +41,38 @@ export default function Form() {
 
 
     return (
-        <form className="form w-100" id="kt_sign_in_form" data-kt-redirect-url="index.html" onSubmit={handleSubmit}>
-            <div className="text-center mb-11">
-                <h1 className="text-gray-900 fw-bolder mb-3">ورود</h1>
-                <div className="text-gray-500 fw-semibold fs-6">خوش آمدید</div>
-            </div>
-            <div className="separator separator-content my-14">
-                <span className="w-125px text-gray-500 fw-semibold fs-7">شماره موبایل</span>
-            </div>
-            <div className="fv-row mb-8">
-                <input type="text" placeholder="شماره موبایل را وارد نمایید" name="phone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.phone && 'is-invalid'}`} />
-                <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.phone}</div>
-            </div>
-            <div className="position-relative mb-3">
-                <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder="پسورد را وارد نمایید" name="password" autoComplete="off" />
-                <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility" onClick={() => setPassword(!password)}>
-                    <i className={`ki-outline ki-eye-slash fs-2 ${!password && 'd-none'}`}></i>
-                    <i className={`ki-outline ki-eye fs-2 ${password && 'd-none'}`}></i>
-                </span>
-                <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.password}</div>
-            </div>
+        <>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossOrigin="anonymous"></link>
+            <form className="form w-25 mt-5 m-auto" style={{ paddingTop: "120px" }} id="kt_sign_in_form" data-kt-redirect-url="index.html" onSubmit={handleSubmit}>
+                <div className="text-center mb-5">
+                    <h1 className="text-gray-900 fw-bolder mb-3">ورود</h1>
+                    <div className="text-gray-500 fw-semibold fs-6">خوش آمدید</div>
+                </div>
+                <div className="fv-row mb-2">
+                    <input type="text" placeholder="شماره موبایل را وارد نمایید" name="phone" autoComplete="off" className={`form-control bg-transparent ${state?.errors?.phone && 'is-invalid'}`} />
+                    <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.phone}</div>
+                </div>
+                <div className="position-relative mb-3">
+                    <input className={`form-control bg-transparent ${state?.errors?.password && 'is-invalid'}`} type={`${password ? 'password' : 'text'}`} placeholder="پسورد را وارد نمایید" name="password" autoComplete="off" />
+                    <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility" onClick={() => setPassword(!password)}>
+                        <i className={`ki-outline ki-eye-slash fs-2 ${!password && 'd-none'}`}></i>
+                        <i className={`ki-outline ki-eye fs-2 ${password && 'd-none'}`}></i>
+                    </span>
+                    <div id="validationServerUsernameFeedback" className="invalid-feedback">{state?.errors?.password}</div>
+                </div>
 
-            {/*button*/}
-            {state?.message === 'error' && <Errors data={state?.error} />}
-            <div className="d-grid mb-10">
-                <button type="submit" id="kt_sign_in_submit" className="btn btn-primary" disabled={isSubmitting || pending}>
-                    {(isSubmitting || pending) ? <Spinner /> : (
-                        <span className="indicator-label">ورود</span>
-                    )}
-                </button>
-            </div>
-        </form>
+                {/*button*/}
+                {state?.message === 'error' && <Errors data={state?.error} />}
+                <div className="d-grid mb-10">
+                    <button type="submit" id="kt_sign_in_submit" className="btn btn-primary" disabled={isSubmitting || pending}>
+                        {(isSubmitting || pending) ? <Spinner /> : (
+                            <span className="indicator-label">ورود</span>
+                        )}
+                    </button>
+                </div>
+            </form>
+        </>
+
+
     )
 }
