@@ -106,7 +106,7 @@ export default function EditShift({ data, ips }: { data: any, ips: any }) {
                 }))
             },
             ips: {
-                connect: ip.map((p: any) => {
+                set: ip.map((p: any) => {
                     return { id: p.value }
                 })
             },
