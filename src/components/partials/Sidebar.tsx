@@ -1,6 +1,5 @@
 'use client'
 import ProfileSidebar from "../sidebar/profile/ProfileSidebar";
-import logo from '../../../public/logo.png';
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -14,8 +13,8 @@ export default function Sidebar() {
             <div className="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8" id="kt_app_sidebar_logo">
                 {/*begin::Logo*/}
                 <Link href="index.html">
-                    <Image src={logo} className="h-30px d-none d-sm-inline app-sidebar-logo-default theme-light-show" alt="Logo" />
-                    <Image src={logo} className="h-30px h-lg-25px theme-dark-show" alt="logo" />
+                    <Image src="/logo.png" width={100} height={100} className="h-30px d-none d-sm-inline app-sidebar-logo-default theme-light-show" alt="Logo" />
+                    <Image src="/logo.png" width={100} height={100} className="h-30px h-lg-25px theme-dark-show" alt="logo" />
                 </Link>
                 {/*end::Logo*/}
                 {/*begin::کناری toggle*/}

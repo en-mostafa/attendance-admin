@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../../public/logo.png";
+
 
 export default function Header() {
 
@@ -11,7 +11,7 @@ export default function Header() {
                         <i className="ki-outline ki-abstract-14 fs-2"></i>
                     </div>
                     <a href="index.html">
-                        <Image src={logo} className="h-100px" alt="Logo" />
+                        <Image src="/logo.png" width={100} height={100} className="h-100px" alt="Logo" />
                     </a>
                 </div>
                 <div className="app-navbar flex-lg-grow-1" id="kt_app_header_navbar">

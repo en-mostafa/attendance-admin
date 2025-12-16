@@ -1,10 +1,6 @@
-import { Table } from "@/app/(pages)/employe-list/components/Table";
-import Spinner from "@/components/ui/spinner";
 import { getData } from "@/services/fetchData";
 import { userInfo } from "@/services/userServices";
-import { Shift } from "../components/shift";
 import { Form } from "../components/form";
-import { jalali } from "@/lib/helper/jalali-date";
 import { useJalaliFormat } from "@/services/formatDate";
 
 export default async function Page({
